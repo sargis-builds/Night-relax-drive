@@ -6,57 +6,57 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#04060d">
+<meta name="theme-color" content="#02040a">
 <title>Գիշերային Երթևեկություն</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
-html,body{width:100%;height:100%;overflow:hidden;background:#04060d;color:#fff;touch-action:none;overscroll-behavior:none;position:fixed}
+html,body{width:100%;height:100%;overflow:hidden;background:#02040a;color:#fff;touch-action:none;overscroll-behavior:none;position:fixed}
 #app{position:fixed;inset:0;overflow:hidden}
 @media (orientation:portrait){
   #app{width:100vh;height:100vw;top:50%;left:50%;transform:translate(-50%,-50%) rotate(90deg);transform-origin:center}
 }
 canvas{display:block;position:absolute;inset:0;width:100%;height:100%}
-#vig{position:absolute;inset:0;pointer-events:none;z-index:5;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 45%,rgba(0,0,0,.6) 100%)}
-#spdFx{position:absolute;inset:0;pointer-events:none;z-index:6;opacity:0;transition:opacity .2s;background:radial-gradient(ellipse at 50% 55%,rgba(80,140,255,0) 30%,rgba(120,160,255,.16) 70%,rgba(180,120,255,.24) 100%)}
-#flash{position:absolute;inset:0;pointer-events:none;z-index:7;opacity:0;background:radial-gradient(ellipse at center,rgba(255,0,0,0) 30%,rgba(255,30,30,.8) 100%);transition:opacity .35s}
+#vig{position:absolute;inset:0;pointer-events:none;z-index:5;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 48%,rgba(0,0,0,.72) 100%)}
+#spdFx{position:absolute;inset:0;pointer-events:none;z-index:6;opacity:0;transition:opacity .3s;background:radial-gradient(ellipse at 50% 55%,rgba(80,140,255,0) 30%,rgba(120,160,255,.14) 70%,rgba(180,120,255,.22) 100%)}
+#flash{position:absolute;inset:0;pointer-events:none;z-index:7;opacity:0;background:radial-gradient(ellipse at center,rgba(255,0,0,0) 30%,rgba(255,30,30,.7) 100%);transition:opacity .45s}
 
 #hud{position:absolute;inset:0;pointer-events:none;z-index:10}
-.panel{background:linear-gradient(165deg,rgba(16,22,42,.85),rgba(8,12,24,.78));border:1px solid rgba(120,180,255,.22);border-radius:14px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 6px 22px rgba(0,0,0,.5)}
+.panel{background:linear-gradient(165deg,rgba(16,22,42,.84),rgba(8,12,24,.76));border:1px solid rgba(120,180,255,.2);border-radius:14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 26px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08)}
 
-#topLeft{position:absolute;top:10px;left:10px;padding:8px 16px}
-#lvlName{font-size:11px;letter-spacing:2px;color:#7fd4ff;font-weight:700}
-#distVal{font-size:20px;font-weight:800;margin-top:2px;background:linear-gradient(90deg,#fff,#9ad8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+#topLeft{position:absolute;top:10px;left:10px;padding:9px 16px}
+#lvlName{font-size:10px;letter-spacing:2.5px;color:#7fd4ff;font-weight:700}
+#distVal{font-size:19px;font-weight:800;margin-top:2px;background:linear-gradient(90deg,#fff,#a0dcff);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-#topRight{position:absolute;top:10px;right:10px;padding:8px 16px;text-align:right;min-width:140px}
-#spdVal{font-size:34px;font-weight:900;line-height:1;letter-spacing:-1px;background:linear-gradient(90deg,#7ee7ff,#5eb0ff);-webkit-background-clip:text;background-clip:text;color:transparent;transition:filter .15s}
+#topRight{position:absolute;top:10px;right:10px;padding:9px 16px;text-align:right;min-width:140px}
+#spdVal{font-size:33px;font-weight:900;line-height:1;letter-spacing:-1px;background:linear-gradient(90deg,#7ee7ff,#5eb0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
 #spdUnit{font-size:10px;color:#8ea3c8;letter-spacing:3px;font-weight:700;margin-top:1px}
-#hpWrap{margin-top:8px;height:7px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden}
-#hpBar{height:100%;width:100%;border-radius:4px;background:linear-gradient(90deg,#3ddc84,#a8ff60);transition:width .2s,background .3s}
+#hpWrap{margin-top:8px;height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}
+#hpBar{height:100%;width:100%;border-radius:3px;background:linear-gradient(90deg,#3ddc84,#a8ff60);transition:width .3s,background .3s}
 
-#mapPanel{position:absolute;top:96px;right:10px;width:150px;height:150px;border-radius:16px;overflow:hidden;background:linear-gradient(165deg,rgba(14,20,40,.85),rgba(6,10,22,.8));border:1px solid rgba(120,180,255,.28);box-shadow:0 6px 22px rgba(0,0,0,.55);backdrop-filter:blur(8px)}
+#mapPanel{position:absolute;top:94px;right:10px;width:148px;height:148px;border-radius:16px;overflow:hidden;background:linear-gradient(165deg,rgba(12,18,36,.82),rgba(6,10,22,.78));border:1px solid rgba(120,180,255,.26);box-shadow:0 8px 22px rgba(0,0,0,.55);backdrop-filter:blur(8px)}
 #mapCanvas{width:100%;height:100%;display:block}
 
-#objWrap{position:absolute;top:60px;left:50%;transform:translateX(-50%);pointer-events:none;text-align:center}
-#objArrow{transition:transform .12s linear;filter:drop-shadow(0 4px 12px rgba(255,190,80,.7))}
+#objWrap{position:absolute;top:58px;left:50%;transform:translateX(-50%);pointer-events:none;text-align:center}
+#objArrow{transition:transform .12s linear;filter:drop-shadow(0 4px 14px rgba(255,190,80,.7))}
 #objLabel{font-size:11px;font-weight:800;letter-spacing:2px;color:#ffd45e;text-shadow:0 2px 10px rgba(0,0,0,.9);margin-top:2px}
 
-#pauseBtn{position:absolute;top:10px;left:50%;transform:translateX(-50%);pointer-events:auto;padding:7px 18px;border-radius:12px;font-size:11px;letter-spacing:2px;font-weight:800;color:#9fc6ff;cursor:pointer;background:rgba(10,16,32,.72);border:1px solid rgba(120,180,255,.3);backdrop-filter:blur(8px);z-index:25}
+#pauseBtn{position:absolute;top:10px;left:50%;transform:translateX(-50%);pointer-events:auto;padding:7px 18px;border-radius:12px;font-size:11px;letter-spacing:2px;font-weight:800;color:#9fc6ff;cursor:pointer;background:rgba(10,16,32,.7);border:1px solid rgba(120,180,255,.3);backdrop-filter:blur(8px);z-index:25}
 #pauseBtn:active{background:rgba(30,50,90,.9)}
 
 #controls{position:absolute;inset:0;z-index:20;pointer-events:none}
-.btn{position:absolute;pointer-events:auto;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(160deg,rgba(30,42,74,.94),rgba(12,18,36,.94));border:2.5px solid rgba(130,190,255,.4);box-shadow:0 8px 22px rgba(0,0,0,.55),inset 0 2px 0 rgba(255,255,255,.14);color:#cfe4ff;font-weight:900;transition:transform .07s,background .1s,border-color .1s;touch-action:none}
+.btn{position:absolute;pointer-events:auto;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(160deg,rgba(30,42,74,.92),rgba(12,18,36,.92));border:2.5px solid rgba(130,190,255,.4);box-shadow:0 10px 26px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.14);color:#cfe4ff;font-weight:900;transition:transform .08s,background .12s,border-color .12s;touch-action:none}
 .btn:active,.btn.on{transform:scale(.94);background:linear-gradient(160deg,rgba(80,140,255,.96),rgba(40,80,200,.96));border-color:rgba(180,220,255,.95);color:#fff}
 
 #btnL{left:22px;bottom:24px;width:114px;height:114px;font-size:46px}
 #btnR{left:152px;bottom:24px;width:114px;height:114px;font-size:46px}
-#btnBrake{right:160px;bottom:28px;width:98px;height:98px;font-size:12px;letter-spacing:1.5px;border-color:rgba(255,120,120,.55);color:#ffb4b4}
+#btnBrake{right:160px;bottom:28px;width:98px;height:98px;font-size:12px;letter-spacing:1.5px;border-color:rgba(255,120,120,.5);color:#ffb4b4}
 #btnBrake:active,#btnBrake.on{background:linear-gradient(160deg,rgba(255,70,70,.96),rgba(180,20,20,.96));border-color:#ff9a9a}
-#btnGas{right:26px;bottom:20px;width:126px;height:126px;font-size:16px;letter-spacing:2px;border-color:rgba(120,255,170,.55);color:#b6ffd4}
+#btnGas{right:26px;bottom:20px;width:126px;height:126px;font-size:16px;letter-spacing:2px;border-color:rgba(120,255,170,.5);color:#b6ffd4}
 #btnGas:active,#btnGas.on{background:linear-gradient(160deg,rgba(50,230,130,.96),rgba(10,150,70,.96));border-color:#a8ffcf}
 
 #wheelBox{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);width:112px;height:112px;pointer-events:none;z-index:19;filter:drop-shadow(0 6px 18px rgba(0,0,0,.7))}
-#wheelIn{width:100%;height:100%;position:relative;transition:transform .04s linear}
-.wRim{position:absolute;inset:0;border-radius:50%;border:10px solid transparent;background:linear-gradient(#0d1424,#0d1424) padding-box,conic-gradient(from 200deg,#2a3a5c,#48597f,#8fa8d8,#48597f,#2a3a5c,#1a2438,#48597f,#8fa8d8,#48597f,#2a3a5c) border-box;box-shadow:inset 0 0 14px rgba(0,0,0,.85),0 0 0 1px rgba(150,200,255,.2)}
+#wheelIn{width:100%;height:100%;position:relative;transition:transform .05s linear}
+.wRim{position:absolute;inset:0;border-radius:50%;border:10px solid transparent;background:linear-gradient(#0b1222,#0b1222) padding-box,conic-gradient(from 200deg,#2a3a5c,#48597f,#8fa8d8,#48597f,#2a3a5c,#1a2438,#48597f,#8fa8d8,#48597f,#2a3a5c) border-box;box-shadow:inset 0 0 14px rgba(0,0,0,.85),0 0 0 1px rgba(150,200,255,.2)}
 .wSpk{position:absolute;left:50%;top:50%;width:12px;height:48px;margin-left:-6px;border-radius:4px;background:linear-gradient(180deg,#5f74a0,#2a3550);transform-origin:50% 0}
 .w1{transform:rotate(180deg)}.w2{transform:rotate(60deg)}.w3{transform:rotate(-60deg)}
 .wHub{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#7a8fc0,#1b2438 70%);box-shadow:0 0 0 3px #0b1120,inset 0 2px 3px rgba(255,255,255,.28)}
@@ -65,8 +65,8 @@ canvas{display:block;position:absolute;inset:0;width:100%;height:100%}
 #camZone{position:absolute;top:0;right:0;width:82px;height:100%;pointer-events:auto;z-index:21;touch-action:none}
 
 #msg{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);font-size:78px;font-weight:900;letter-spacing:8px;text-align:center;text-shadow:0 0 44px rgba(120,190,255,.9),0 6px 30px rgba(0,0,0,.85);pointer-events:none;opacity:0;z-index:30;white-space:nowrap}
-#msg.show{animation:popMsg .85s ease-out}
-@keyframes popMsg{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.4)}}
+#msg.show{animation:popMsg .9s ease-out}
+@keyframes popMsg{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}25%{opacity:1;transform:translate(-50%,-50%) scale(1.16)}70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.4)}}
 #msg.red{color:#ff5a5a;text-shadow:0 0 46px rgba(255,60,60,.95),0 6px 30px rgba(0,0,0,.85)}
 #msg.gold{color:#ffd45e;text-shadow:0 0 46px rgba(255,200,60,.95),0 6px 30px rgba(0,0,0,.85)}
 #msg.green{color:#8affc0;text-shadow:0 0 46px rgba(80,255,140,.9),0 6px 30px rgba(0,0,0,.85)}
@@ -157,7 +157,7 @@ canvas{display:block;position:absolute;inset:0;width:100%;height:100%}
     <button id="startBtn">ՍԿՍԵԼ</button>
     <div id="hint">
       <span class="k">◀ ▶</span> ղեկ · <span class="k">ԳԱԶ</span> · <span class="k">ԱՐԳԵԼ</span> · Աջ եզրից ↕ կամերա<br>
-      Հասի՛ր նպատակին, <b>կանգնի՛ր</b> · 150+ = վթար
+      Հասի՛ր նպատակին, <b>կանգնի՛ր</b> · բախումը վտանգավոր է միայն 175+ կմ/ժ
     </div>
   </div>
 
@@ -176,40 +176,43 @@ canvas{display:block;position:absolute;inset:0;width:100%;height:100%}
 (function(){
 'use strict';
 
-/* ═══════════ ԿԱՅՈՒՆՆԵՐ ═══════════ */
-const ROAD_HALF = 9;
+/* ══════════ ԿԱՅՈՒՆՆԵՐ ══════════ */
+const ROAD_HALF = 9.5;
 const SEG_LEN   = 6;
 const NUM_SEG   = 180;
-const LANE_OFF  = [-6.5, -2.2, 2.2, 6.5];
-const MAX_SPEED = 180;
-const KMH_MS    = 1/3.6;
+// ՁԱԽ = հանդիպակաց (բացասական X), ԱՋ = մեր ուղղություն (դրական X)
+const LANE_OFF  = [-6.8, -2.3, 2.3, 6.8];
+const MAX_KMH   = 180;
 const LEVELS = [
-  {len:2200, spawn:1.7, name:'ՔԱՂԱՔ'},
-  {len:2600, spawn:1.4, name:'ՄԱՅՐՈՒՂԻ'},
-  {len:3000, spawn:1.2, name:'ԽԱՉՄԵՐՈՒԿ'},
-  {len:3400, spawn:1.0, name:'ԱՎՏՈԲԱՀՆ'},
-  {len:3800, spawn:0.85,name:'ՄԵԾ ԽՃՈՒՄ'}
+  {len:2400, spawn:1.8, name:'ՔԱՂԱՔ'},
+  {len:2800, spawn:1.5, name:'ՄԱՅՐՈՒՂԻ'},
+  {len:3200, spawn:1.25,name:'ԽԱՉՄԵՐՈՒԿ'},
+  {len:3600, spawn:1.05,name:'ԱՎՏՈԲԱՀՆ'},
+  {len:4000, spawn:0.9, name:'ՄԵԾ ԽՃՈՒՄ'}
 ];
 
-/* ═══════════ ՎԻՃԱԿ ═══════════ */
 const S = {
   phase:'menu', level:1,
-  speed:0, x:0, z:0, heading:0,
-  steer:0, health:100, levelLen:2200,
-  hitCd:0, shake:0,
-  camX:0, camY:0, camZ:0,
-  camLX:0, camLY:0, camLZ:0,
-  camPitch:0.18,
-  time:0, countdown:0, _lastC:undefined,
-  best: JSON.parse(localStorage.getItem('night_v3')||'{}')
+  x:0, z:0, vx:0, vz:0, heading:0,
+  steer:0, speed:0, slip:0,
+  health:100, levelLen:2400,
+  hitCd:0, shake:0, time:0,
+  camX:0, camY:0, camZ:0, camLX:0, camLY:0, camLZ:0,
+  camPitch:0.1, camShake:0,
+  countdown:0, _lc:undefined,
+  best: JSON.parse(localStorage.getItem('nv4')||'{}')
 };
-const IN = { gas:false, brake:false, left:false, right:false };
+const IN = { gas:false, brake:false, left:false, right:false, throttle:0 };
 
-/* ═══════════ ՁԱՅՆ ═══════════ */
+/* ══════════ ՁԱՅՆ — բարձր մակարդակ ══════════ */
 const Aud = {
   ctx:null, ready:false, master:null,
-  engGain:null, engFilt:null, o1:null, o2:null,
+  engGain:null, engFilt:null, engHP:null,
+  o1:null,o2:null,o3:null,o4:null,
+  lfo:null, lfoGain:null,
+  noiseSrc:null, windGain:null,
   musicGain:null, musicTimer:null, step:0,
+  reverb:null,
 
   init(){
     if(this.ctx) return;
@@ -217,236 +220,384 @@ const Aud = {
     if(!AC) return;
     this.ctx = new AC();
     this.master = this.ctx.createGain();
-    this.master.gain.value = 0.72;
-    this.master.connect(this.ctx.destination);
+    this.master.gain.value = 0.75;
+    // Soft compressor
+    const comp = this.ctx.createDynamicsCompressor();
+    comp.threshold.value = -12;
+    comp.ratio.value = 6;
+    comp.attack.value = 0.005;
+    comp.release.value = 0.2;
+    this.master.connect(comp);
+    comp.connect(this.ctx.destination);
 
+    // ═══ ՇԱՐԺԻՉ ═══
     this.engGain = this.ctx.createGain();
     this.engGain.gain.value = 0;
     this.engFilt = this.ctx.createBiquadFilter();
-    this.engFilt.type='lowpass';
-    this.engFilt.frequency.value = 320;
-    this.engFilt.Q.value = 1.4;
+    this.engFilt.type = 'lowpass';
+    this.engFilt.frequency.value = 280;
+    this.engFilt.Q.value = 3.5;
+    this.engHP = this.ctx.createBiquadFilter();
+    this.engHP.type = 'highpass';
+    this.engHP.frequency.value = 30;
     this.engFilt.connect(this.engGain);
     this.engGain.connect(this.master);
 
-    this.o1 = this.ctx.createOscillator();
-    this.o1.type = 'sine'; this.o1.frequency.value = 42;
-    const g1 = this.ctx.createGain(); g1.gain.value = 1.0;
-    this.o1.connect(g1); g1.connect(this.engFilt); this.o1.start();
+    const mk = (type, freq, gainVal) => {
+      const o = this.ctx.createOscillator();
+      o.type = type; o.frequency.value = freq;
+      const g = this.ctx.createGain(); g.gain.value = gainVal;
+      o.connect(g); g.connect(this.engFilt);
+      o.start();
+      return o;
+    };
+    this.o1 = mk('sine', 45, 1.0);
+    this.o2 = mk('triangle', 67, 0.55);
+    this.o3 = mk('sine', 90, 0.35);
+    this.o4 = mk('sawtooth', 22, 0.18);
 
-    this.o2 = this.ctx.createOscillator();
-    this.o2.type = 'triangle'; this.o2.frequency.value = 63;
-    const g2 = this.ctx.createGain(); g2.gain.value = 0.5;
-    this.o2.connect(g2); g2.connect(this.engFilt); this.o2.start();
+    // LFO vibrato
+    this.lfo = this.ctx.createOscillator();
+    this.lfo.frequency.value = 6.5;
+    this.lfoGain = this.ctx.createGain();
+    this.lfoGain.gain.value = 1.8;
+    this.lfo.connect(this.lfoGain);
+    this.lfoGain.connect(this.o1.frequency);
+    this.lfoGain.connect(this.o2.frequency);
+    this.lfo.start();
+
+    // ═══ ՔԱՄԻ ԱՂՄՈՒԿ ═══
+    const bufN = this.ctx.sampleRate * 2;
+    const buf = this.ctx.createBuffer(1, bufN, this.ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for(let i=0;i<bufN;i++) d[i] = (Math.random()*2-1) * 0.5;
+    this.noiseSrc = this.ctx.createBufferSource();
+    this.noiseSrc.buffer = buf;
+    this.noiseSrc.loop = true;
+    const nf = this.ctx.createBiquadFilter();
+    nf.type = 'bandpass'; nf.frequency.value = 850; nf.Q.value = 0.8;
+    this.windGain = this.ctx.createGain();
+    this.windGain.gain.value = 0;
+    this.noiseSrc.connect(nf); nf.connect(this.windGain);
+    this.windGain.connect(this.master);
+    this.noiseSrc.start();
 
     this.musicGain = this.ctx.createGain();
     this.musicGain.gain.value = 0;
     this.musicGain.connect(this.master);
+
     this.ready = true;
   },
-  resume(){ if(this.ctx && this.ctx.state==='suspended') this.ctx.resume(); },
-  setEngine(sp, run){
+
+  resume(){ if(this.ctx && this.ctx.state === 'suspended') this.ctx.resume(); },
+
+  setEngine(kmh, gas, run){
     if(!this.ready) return;
     const t = this.ctx.currentTime;
-    const f = 40 + sp * 0.7;
-    this.o1.frequency.setTargetAtTime(f, t, 0.14);
-    this.o2.frequency.setTargetAtTime(f*1.5, t, 0.14);
-    this.engFilt.frequency.setTargetAtTime(260 + sp*4, t, 0.18);
-    this.engGain.gain.setTargetAtTime(run ? 0.05 + (sp/MAX_SPEED)*0.085 : 0, t, 0.22);
+    const f = 38 + kmh * 0.85 + (gas ? 4 : 0);
+    this.o1.frequency.setTargetAtTime(f, t, 0.10);
+    this.o2.frequency.setTargetAtTime(f * 1.5 + 2, t, 0.10);
+    this.o3.frequency.setTargetAtTime(f * 2.02, t, 0.10);
+    this.o4.frequency.setTargetAtTime(f * 0.5, t, 0.10);
+    this.engFilt.frequency.setTargetAtTime(220 + kmh * 5.5 + (gas ? 200 : 0), t, 0.15);
+    const vol = run ? (0.05 + (kmh / MAX_KMH) * 0.12 + (gas ? 0.03 : 0)) : 0;
+    this.engGain.gain.setTargetAtTime(vol, t, 0.2);
+    this.windGain.gain.setTargetAtTime(run ? (kmh/MAX_KMH) * 0.05 : 0, t, 0.3);
   },
-  beep(long){
-    if(!this.ready) return;
-    const t = this.ctx.currentTime;
-    const dur = long ? 0.42 : 0.13;
-    const freq = long ? 720 : 520;
-    const o = this.ctx.createOscillator();
-    o.type = 'triangle';
-    o.frequency.setValueAtTime(freq, t);
-    const g = this.ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.36, t+0.012);
-    g.gain.setValueAtTime(0.36, t + dur*0.55);
-    g.gain.exponentialRampToValueAtTime(0.0001, t+dur);
-    o.connect(g); g.connect(this.master);
-    o.start(t); o.stop(t+dur+0.05);
-  },
-  _tone(freq, dur, vol, slide){
+
+  _tone(freq, dur, type, vol, slide){
     if(!this.ready) return;
     const t = this.ctx.currentTime;
     const o = this.ctx.createOscillator();
-    o.type = 'sine';
+    o.type = type||'sine';
     o.frequency.setValueAtTime(freq, t);
     if(slide) o.frequency.exponentialRampToValueAtTime(slide, t+dur);
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(vol, t+0.015);
+    g.gain.exponentialRampToValueAtTime(vol, t+0.012);
     g.gain.exponentialRampToValueAtTime(0.0001, t+dur);
     o.connect(g); g.connect(this.master);
     o.start(t); o.stop(t+dur+0.05);
   },
+
   crash(){
     if(!this.ready) return;
     const t = this.ctx.currentTime;
-    const n = Math.floor(this.ctx.sampleRate*0.65);
-    const buf = this.ctx.createBuffer(1,n,this.ctx.sampleRate);
+    const n = Math.floor(this.ctx.sampleRate * 0.7);
+    const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
     const d = buf.getChannelData(0);
-    for(let i=0;i<n;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/n,1.6);
-    const s = this.ctx.createBufferSource(); s.buffer=buf;
-    const f = this.ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=1300;
-    const g = this.ctx.createGain(); g.gain.value=0.55;
-    s.connect(f); f.connect(g); g.connect(this.master); s.start(t);
-    this._tone(150, 0.55, 0.4, 32);
+    for(let i=0;i<n;i++) d[i] = (Math.random()*2-1) * Math.pow(1-i/n, 1.6);
+    const src = this.ctx.createBufferSource(); src.buffer = buf;
+    const f = this.ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value = 1600;
+    const g = this.ctx.createGain(); g.gain.value = 0.5;
+    src.connect(f); f.connect(g); g.connect(this.master); src.start(t);
+    this._tone(160, 0.5, 'sine', 0.35, 35);
   },
-  bump(force){ this._tone(180+force*40, 0.2, 0.06+force*0.16, 90); },
+
+  bump(f){ this._tone(200 + f*60, 0.22, 'sine', 0.06 + f*0.15, 90); },
+  whoosh(){
+    if(!this.ready) return;
+    const t = this.ctx.currentTime;
+    const n = Math.floor(this.ctx.sampleRate * 0.35);
+    const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for(let i=0;i<n;i++){
+      const env = Math.sin(Math.PI * i/n);
+      d[i] = (Math.random()*2-1) * env;
+    }
+    const s = this.ctx.createBufferSource(); s.buffer = buf;
+    const f = this.ctx.createBiquadFilter(); f.type='bandpass';
+    f.frequency.setValueAtTime(1800, t);
+    f.frequency.exponentialRampToValueAtTime(400, t+0.3);
+    f.Q.value = 1.2;
+    const g = this.ctx.createGain(); g.gain.value = 0.10;
+    s.connect(f); f.connect(g); g.connect(this.master); s.start(t);
+  },
   ding(){
     if(!this.ready) return;
     const t = this.ctx.currentTime;
-    [660,880,1320].forEach((f,i)=>{
+    [523,659,784,1046].forEach((f,i)=>{
       const o = this.ctx.createOscillator();
-      o.type='sine'; o.frequency.value=f;
+      o.type = 'sine'; o.frequency.value = f;
       const g = this.ctx.createGain();
-      g.gain.setValueAtTime(0.0001, t+i*0.1);
-      g.gain.exponentialRampToValueAtTime(0.16, t+i*0.1+0.03);
-      g.gain.exponentialRampToValueAtTime(0.0001, t+i*0.1+0.55);
+      g.gain.setValueAtTime(0.0001, t + i*0.08);
+      g.gain.exponentialRampToValueAtTime(0.14, t + i*0.08 + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + i*0.08 + 0.7);
       o.connect(g); g.connect(this.master);
-      o.start(t+i*0.1); o.stop(t+i*0.1+0.6);
+      o.start(t+i*0.08); o.stop(t+i*0.08+0.75);
     });
   },
-  _n(freq, at, dur, type, vol, cut){
+  beep(long){
+    if(!this.ready) return;
+    const t = this.ctx.currentTime;
+    const dur = long ? 0.45 : 0.14;
+    const f = long ? 780 : 540;
+    const o = this.ctx.createOscillator();
+    o.type = 'triangle';
+    o.frequency.setValueAtTime(f, t);
+    const g = this.ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.35, t+0.015);
+    g.gain.setValueAtTime(0.35, t + dur*0.55);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+dur);
+    o.connect(g); g.connect(this.master);
+    o.start(t); o.stop(t+dur+0.06);
+  },
+
+  _mn(freq, at, dur, type, vol, cut){
     const o = this.ctx.createOscillator();
     o.type = type; o.frequency.value = freq;
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(0.0001, at);
-    g.gain.exponentialRampToValueAtTime(vol, at+0.02);
+    g.gain.exponentialRampToValueAtTime(vol, at+0.03);
     g.gain.exponentialRampToValueAtTime(0.0001, at+dur);
     const f = this.ctx.createBiquadFilter();
-    f.type='lowpass'; f.frequency.value = cut;
+    f.type = 'lowpass'; f.frequency.value = cut;
     o.connect(f); f.connect(g); g.connect(this.musicGain);
-    o.start(at); o.stop(at+dur+0.08);
+    o.start(at); o.stop(at+dur+0.1);
   },
+
   startMusic(){
     if(!this.ready || this.musicTimer) return;
-    this.musicGain.gain.setTargetAtTime(0.4, this.ctx.currentTime, 1.2);
+    this.musicGain.gain.setTargetAtTime(0.5, this.ctx.currentTime, 1.8);
+    // progression: Am - F - C - G
     const CH = [
-      [220,261.63,329.63], [174.61,220,261.63],
-      [196,246.94,293.66], [261.63,329.63,392]
+      [220, 261.63, 329.63, 440],
+      [174.61, 220, 261.63, 349.23],
+      [130.81, 196, 261.63, 329.63],
+      [196, 246.94, 293.66, 392]
     ];
-    const ARP = [523.25,659.25,783.99,659.25,523.25,440,392,440,
-                 440,523.25,659.25,523.25,440,392,349.23,392];
-    let next = this.ctx.currentTime + 0.1;
+    const BASS = [110, 87.31, 65.41, 98];
+    const ARP = [
+      523.25,659.25,783.99,659.25,523.25,440,392,440,
+      440,523.25,659.25,523.25,440,392,349.23,392,
+      523.25,659.25,783.99,1046, 783.99,659.25,523.25,392,
+      392,493.88,587.33,493.88,392,349.23,329.63,392
+    ];
+    let next = this.ctx.currentTime + 0.15;
     this.step = 0;
     this.musicTimer = setInterval(()=>{
       if(!this.ready) return;
-      while(next < this.ctx.currentTime + 0.35){
-        const s = this.step % 16;
-        if(s === 0){
-          const ch = CH[Math.floor(this.step/16)%4];
-          ch.forEach((f,i)=>this._n(f, next, 2.4, 'sine', 0.033-i*0.005, 1100));
+      while(next < this.ctx.currentTime + 0.4){
+        const s = this.step % 32;
+        if(s % 8 === 0){
+          const chIdx = Math.floor(s/8);
+          const ch = CH[chIdx];
+          ch.forEach((f,i)=> this._mn(f, next, 3.6, 'sine', 0.032 - i*0.005, 1200));
+          this._mn(BASS[chIdx], next, 3.4, 'sine', 0.055, 800);
         }
-        this._n(ARP[s], next, 0.85, 'triangle', 0.026, 2600);
-        next += 0.32; this.step++;
+        this._mn(ARP[s], next, 0.85, 'triangle', 0.026, 2800);
+        // soft hat
+        if(s % 2 === 1){
+          const t = next;
+          const n = Math.floor(this.ctx.sampleRate * 0.04);
+          const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
+          const d = buf.getChannelData(0);
+          for(let i=0;i<n;i++) d[i] = (Math.random()*2-1) * Math.pow(1-i/n, 5);
+          const src = this.ctx.createBufferSource(); src.buffer = buf;
+          const f = this.ctx.createBiquadFilter(); f.type='highpass'; f.frequency.value=6500;
+          const g = this.ctx.createGain(); g.gain.value = 0.018;
+          src.connect(f); f.connect(g); g.connect(this.musicGain);
+          src.start(t);
+        }
+        next += 0.33;
+        this.step++;
       }
-    }, 90);
+    }, 100);
   },
   stopMusic(){
-    if(this.musicTimer){ clearInterval(this.musicTimer); this.musicTimer=null; }
-    if(this.ready) this.musicGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.4);
+    if(this.musicTimer){ clearInterval(this.musicTimer); this.musicTimer = null; }
+    if(this.ready) this.musicGain.gain.setTargetAtTime(0, this.ctx.currentTime, 0.5);
   }
 };
 
-/* ═══════════ THREE.JS ═══════════ */
+/* ══════════ THREE.JS ══════════ */
 const app = document.getElementById('app');
 const cvs = document.getElementById('c');
 const renderer = new THREE.WebGLRenderer({
-  canvas:cvs, antialias:false, powerPreference:'high-performance', stencil:false, depth:true
+  canvas:cvs, antialias:true, powerPreference:'high-performance', alpha:false
 });
-// ⚡ DPR=1 — ամենամեծ perf-շահը
-renderer.setPixelRatio(1);
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
 renderer.outputEncoding = THREE.sRGBEncoding;
-renderer.toneMapping = THREE.NoToneMapping;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x05070e);
-scene.fog = new THREE.Fog(0x070c1c, 40, 200);
+scene.background = new THREE.Color(0x03060f);
+scene.fog = new THREE.FogExp2(0x060b18, 0.0085);
 
-const camera = new THREE.PerspectiveCamera(72, 16/9, 0.3, 400);
+const camera = new THREE.PerspectiveCamera(70, 16/9, 0.3, 500);
 
-/* երկինք */
+/* ═══ ԵՐԿԻՆՔ ═══ */
 (function(){
-  const g = new THREE.SphereGeometry(380, 20, 12);
+  const g = new THREE.SphereGeometry(400, 24, 14);
   const m = new THREE.ShaderMaterial({
-    uniforms:{ cT:{value:new THREE.Color(0x020510)}, cM:{value:new THREE.Color(0x161038)}, cB:{value:new THREE.Color(0x321a3e)} },
+    uniforms:{
+      cT:{value:new THREE.Color(0x020310)},
+      cM:{value:new THREE.Color(0x1a1440)},
+      cB:{value:new THREE.Color(0x3a1d42)},
+      cH:{value:new THREE.Color(0x5a3a6a)}
+    },
     vertexShader:'varying vec3 vP;void main(){vP=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
-    fragmentShader:'uniform vec3 cT,cM,cB;varying vec3 vP;void main(){float h=normalize(vP).y;vec3 c=h>0.0?mix(cM,cT,pow(h,0.55)):mix(cM,cB,pow(-h,0.6));gl_FragColor=vec4(c,1.0);}',
+    fragmentShader:`
+      uniform vec3 cT,cM,cB,cH;varying vec3 vP;
+      void main(){
+        float h = normalize(vP).y;
+        vec3 col = h > 0.0 ? mix(cM, cT, pow(h, 0.5)) : mix(cM, cB, pow(-h, 0.7));
+        // horizon glow
+        float hg = exp(-abs(h)*8.0);
+        col += cH * hg * 0.35;
+        gl_FragColor = vec4(col, 1.0);
+      }`,
     side:THREE.BackSide, depthWrite:false, fog:false
   });
-  scene.add(new THREE.Mesh(g,m));
+  scene.add(new THREE.Mesh(g, m));
 })();
 
-/* ՄԻԱՅՆ 2 ԼՈՒՅՍ — ոչ մի PointLight/SpotLight */
-scene.add(new THREE.HemisphereLight(0x6a85c4, 0x0a0e1a, 0.7));
-const dir = new THREE.DirectionalLight(0xa8c0f0, 0.55);
-dir.position.set(-60, 100, -40);
-scene.add(dir);
+/* ═══ ԼՈՒՅՍԵՐ ═══ */
+scene.add(new THREE.HemisphereLight(0x5570b0, 0x0a0d18, 0.62));
+const moon = new THREE.DirectionalLight(0xa0b8e8, 0.55);
+moon.position.set(-80, 140, -60);
+scene.add(moon);
+const cityFill = new THREE.DirectionalLight(0xffa070, 0.22);
+cityFill.position.set(60, 40, 100);
+scene.add(cityFill);
 
-/* գետին */
-const ground = new THREE.Mesh(
-  new THREE.PlaneGeometry(800, 2000),
-  new THREE.MeshBasicMaterial({color:0x060a12})
-);
+/* ═══ ԳԵՏԻՆ ═══ */
+const groundMat = new THREE.MeshStandardMaterial({ color:0x080c15, roughness:1, metalness:0 });
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(1000, 2600), groundMat);
 ground.rotation.x = -Math.PI/2;
-ground.position.y = -0.5;
+ground.position.y = -0.15;
 scene.add(ground);
 
-/* ═══════════ ԳԼՈՒ ԳԵՆԵՐԱՏՈՐ ═══════════ */
-function makeGlowTex(r,g,b){
-  const cv = document.createElement('canvas');
-  cv.width = 64; cv.height = 64;
-  const x = cv.getContext('2d');
-  const grad = x.createRadialGradient(32,32,0, 32,32,32);
-  grad.addColorStop(0, `rgba(${r},${g},${b},1)`);
-  grad.addColorStop(0.35, `rgba(${r},${g},${b},0.55)`);
-  grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-  x.fillStyle = grad;
-  x.fillRect(0,0,64,64);
-  return new THREE.CanvasTexture(cv);
+/* ══════════ ՃԱՆԱՊԱՐՀ ══════════ */
+function roadX(z){
+  return 26*Math.sin(z*0.0042) + 11*Math.sin(z*0.0125) + 3.2*Math.sin(z*0.027);
 }
-const GLOW_WARM = makeGlowTex(255,220,140);
-const GLOW_WHITE = makeGlowTex(255,245,220);
-const GLOW_RED = makeGlowTex(255,60,50);
-
-/* ═══════════ ՃԱՆԱՊԱՐՀ ═══════════ */
-function roadX(z){ return 24*Math.sin(z*0.0048) + 10*Math.sin(z*0.0131) + 3.5*Math.sin(z*0.029); }
-function roadSlope(z){ const d=0.6; return (roadX(z+d)-roadX(z-d))/(2*d); }
+function roadSlope(z){ const d = 0.6; return (roadX(z+d) - roadX(z-d))/(2*d); }
 function roadH(z){ return Math.atan(roadSlope(z)); }
 
+/* ԱՍՖԱԼՏԻ ԲԱՐՁՐ ՈՐԱԿԻ ՏԵՔՍՏՈՒՐԱ */
 function makeRoadTex(){
   const cv = document.createElement('canvas');
-  cv.width = 128; cv.height = 256;
+  cv.width = 512; cv.height = 1024;
   const x = cv.getContext('2d');
-  x.fillStyle = '#1c1f26'; x.fillRect(0,0,128,256);
-  for(let i=0;i<2200;i++){
-    x.fillStyle = Math.random()>0.5 ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.06)';
-    x.fillRect(Math.random()*128, Math.random()*256, 1.2, 1.2);
+  // Base asphalt
+  x.fillStyle = '#1c1f27';
+  x.fillRect(0,0,512,1024);
+  // Noise (many small dots)
+  for(let i=0;i<18000;i++){
+    const v = Math.random();
+    x.fillStyle = v > 0.5 ? `rgba(255,255,255,${Math.random()*0.03})` : `rgba(0,0,0,${Math.random()*0.07})`;
+    const size = 0.5 + Math.random()*1.5;
+    x.fillRect(Math.random()*512, Math.random()*1024, size, size);
   }
+  // Cracks (random lines)
+  for(let i=0;i<14;i++){
+    x.strokeStyle = `rgba(0,0,0,${0.15 + Math.random()*0.25})`;
+    x.lineWidth = 0.5 + Math.random()*1.2;
+    x.beginPath();
+    let cx = Math.random()*512, cy = Math.random()*1024;
+    x.moveTo(cx, cy);
+    for(let j=0;j<8;j++){
+      cx += (Math.random()-0.5)*60;
+      cy += (Math.random()-0.5)*60;
+      x.lineTo(cx, cy);
+    }
+    x.stroke();
+  }
+  // Oil stains
+  for(let i=0;i<5;i++){
+    const cx = 100 + Math.random()*312, cy = Math.random()*1024;
+    const r = 20 + Math.random()*40;
+    const grad = x.createRadialGradient(cx, cy, 0, cx, cy, r);
+    grad.addColorStop(0, 'rgba(0,0,0,0.35)');
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    x.fillStyle = grad;
+    x.beginPath(); x.arc(cx, cy, r, 0, 6.3); x.fill();
+  }
+  // Worn track centers (darker strips where wheels go)
+  x.fillStyle = 'rgba(0,0,0,0.10)';
+  x.fillRect(96, 0, 64, 1024);
+  x.fillRect(352, 0, 64, 1024);
+  // Center double yellow
+  x.fillStyle = '#c9a53a';
+  x.fillRect(251, 0, 4, 1024);
+  x.fillRect(257, 0, 4, 1024);
+  // Edge white lines
+  x.fillStyle = '#dcdcdc';
+  x.fillRect(8, 0, 5, 1024);
+  x.fillRect(499, 0, 5, 1024);
+  // Lane markers
   x.fillStyle = '#c8c8c8';
-  x.fillRect(3,0,3,256); x.fillRect(122,0,3,256);
-  x.fillStyle = '#d8b840';
-  x.fillRect(59,0,3,256); x.fillRect(66,0,3,256);
-  x.fillStyle = '#b8b8b8';
-  for(let y=0;y<256;y+=128){ x.fillRect(32,y,3,64); x.fillRect(93,y,3,64); }
+  for(let y=0;y<1024;y+=256){
+    x.fillRect(163, y, 4, 128);
+    x.fillRect(345, y, 4, 128);
+  }
+  // Edge wear (subtle dark edges)
+  const gr = x.createLinearGradient(0,0,60,0);
+  gr.addColorStop(0, 'rgba(0,0,0,0.35)');
+  gr.addColorStop(1, 'rgba(0,0,0,0)');
+  x.fillStyle = gr; x.fillRect(0,0,60,1024);
+  const gr2 = x.createLinearGradient(512,0,452,0);
+  gr2.addColorStop(0, 'rgba(0,0,0,0.35)');
+  gr2.addColorStop(1, 'rgba(0,0,0,0)');
+  x.fillStyle = gr2; x.fillRect(452,0,60,1024);
+
   const t = new THREE.CanvasTexture(cv);
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
   t.encoding = THREE.sRGBEncoding;
-  t.anisotropy = 2;
+  t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
   return t;
 }
 
+const roadTex = makeRoadTex();
 const roadGeo = new THREE.BufferGeometry();
 const rp = new Float32Array((NUM_SEG+1)*2*3);
 const ru = new Float32Array((NUM_SEG+1)*2*2);
 (function(){
-  const idx=[];
+  const idx = [];
   for(let i=0;i<NUM_SEG;i++){
     const a=i*2,b=i*2+1,c=(i+1)*2,d=(i+1)*2+1;
     idx.push(a,c,b,b,c,d);
@@ -456,32 +607,51 @@ const ru = new Float32Array((NUM_SEG+1)*2*2);
   roadGeo.setAttribute('uv', new THREE.BufferAttribute(ru,2));
 })();
 roadGeo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 1e6);
-const roadMesh = new THREE.Mesh(roadGeo, new THREE.MeshBasicMaterial({map:makeRoadTex()}));
+const roadMat = new THREE.MeshStandardMaterial({
+  map:roadTex, roughness:0.95, metalness:0.05, color:0xffffff
+});
+const roadMesh = new THREE.Mesh(roadGeo, roadMat);
 roadMesh.frustumCulled = false;
 scene.add(roadMesh);
 
-/* պատնեշ — պարզ PlaneGeometry-ով 2 հատ */
-const barrierMat = new THREE.MeshBasicMaterial({
-  color:0x4a86ff, transparent:true, opacity:0.10, side:THREE.DoubleSide, depthWrite:false
-});
-const barrierGeo = new THREE.BufferGeometry();
+/* ═══ ՊԱՏՆԵՇ — թափանցիկ, մշուշոտ ═══ */
+const bGeo = new THREE.BufferGeometry();
 const bp = new Float32Array((NUM_SEG+1)*4*3);
-const bidx = [];
-for(let i=0;i<NUM_SEG;i++){
-  const a=i*4, b=i*4+1, c=(i+1)*4, d=(i+1)*4+1;
-  bidx.push(a,c,b,b,c,d);
-  const e=i*4+2, f=i*4+3, g=(i+1)*4+2, h=(i+1)*4+3;
-  bidx.push(e,g,f,f,g,h);
+(function(){
+  const idx = [];
+  for(let i=0;i<NUM_SEG;i++){
+    const a=i*4,b=i*4+1,c=(i+1)*4,d=(i+1)*4+1;
+    idx.push(a,c,b,b,c,d);
+    const e=i*4+2,f=i*4+3,g=(i+1)*4+2,h=(i+1)*4+3;
+    idx.push(e,g,f,f,g,h);
+  }
+  bGeo.setIndex(idx);
+  bGeo.setAttribute('position', new THREE.BufferAttribute(bp,3));
+})();
+bGeo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 1e6);
+const bMat = new THREE.MeshBasicMaterial({
+  color:0x5a9aff, transparent:true, opacity:0.10, side:THREE.DoubleSide, depthWrite:false
+});
+const bMesh = new THREE.Mesh(bGeo, bMat);
+bMesh.frustumCulled = false;
+scene.add(bMesh);
+
+// Neat strip lights on top of barriers (small emissive spheres)
+const STRIP_N = 120;
+const stripGeo = new THREE.SphereGeometry(0.08, 5, 4);
+const stripMatL = new THREE.MeshBasicMaterial({ color:0x4aa8ff });
+const stripMatR = new THREE.MeshBasicMaterial({ color:0xff6a3a });
+const stripL = new THREE.InstancedMesh ? null : null;
+// For simplicity: use a few Points instead
+const stripPoints = [];
+for(let i=0;i<STRIP_N;i++){
+  const pL = new THREE.Mesh(stripGeo, stripMatL);
+  const pR = new THREE.Mesh(stripGeo, stripMatR);
+  scene.add(pL); scene.add(pR);
+  stripPoints.push({ l:pL, r:pR, i });
 }
-barrierGeo.setIndex(bidx);
-barrierGeo.setAttribute('position', new THREE.BufferAttribute(bp,3));
-barrierGeo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 1e6);
-const barrierMesh = new THREE.Mesh(barrierGeo, barrierMat);
-barrierMesh.frustumCulled = false;
-scene.add(barrierMesh);
 
-const WALL_H = 1.0;
-
+const WALL_H = 1.15;
 function updateRoad(pz){
   const startZ = pz - 100;
   for(let i=0;i<=NUM_SEG;i++){
@@ -493,247 +663,438 @@ function updateRoad(pz){
     const u = i*4;
     ru[u]=0; ru[u+1]=z/16;
     ru[u+2]=1; ru[u+3]=z/16;
-
     const w = i*12;
-    bp[w]   = cx-ROAD_HALF; bp[w+1]=WALL_H; bp[w+2]=z;
-    bp[w+3] = cx-ROAD_HALF; bp[w+4]=0;      bp[w+5]=z;
-    bp[w+6] = cx+ROAD_HALF; bp[w+7]=WALL_H; bp[w+8]=z;
-    bp[w+9] = cx+ROAD_HALF; bp[w+10]=0;     bp[w+11]=z;
+    bp[w]=cx-ROAD_HALF; bp[w+1]=WALL_H; bp[w+2]=z;
+    bp[w+3]=cx-ROAD_HALF; bp[w+4]=0; bp[w+5]=z;
+    bp[w+6]=cx+ROAD_HALF; bp[w+7]=WALL_H; bp[w+8]=z;
+    bp[w+9]=cx+ROAD_HALF; bp[w+10]=0; bp[w+11]=z;
   }
   roadGeo.attributes.position.needsUpdate = true;
   roadGeo.attributes.uv.needsUpdate = true;
-  barrierGeo.attributes.position.needsUpdate = true;
+  bGeo.attributes.position.needsUpdate = true;
+
+  // update strip lights (top of barrier, every 12m)
+  const stripSpacing = 15;
+  const baseZ = Math.floor((pz - 60) / stripSpacing) * stripSpacing;
+  for(let i=0;i<STRIP_N;i++){
+    const z = baseZ + i*stripSpacing;
+    const cx = roadX(z);
+    const sp = stripPoints[i];
+    sp.l.position.set(cx - ROAD_HALF + 0.05, WALL_H, z);
+    sp.r.position.set(cx + ROAD_HALF - 0.05, WALL_H, z);
+  }
 }
 
-/* ═══════════ ՄԵՔԵՆԱ ═══════════ */
-function makeCarModel(color, isPlayer){
-  const g = new THREE.Group();
-  const bodyMat = new THREE.MeshLambertMaterial({ color });
-  const glassMat = new THREE.MeshLambertMaterial({ color:0x0a1424 });
-  const wheelMat = new THREE.MeshLambertMaterial({ color:0x0a0c12 });
-
-  // հիմնական իրան
-  const body = new THREE.Mesh(new THREE.BoxGeometry(1.9, 0.52, 4.2), bodyMat);
-  body.position.y = 0.62; g.add(body);
-
-  // քիթ
-  const nose = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.36, 1.0), bodyMat);
-  nose.position.set(0, 0.55, 2.42); g.add(nose);
-
-  // կաբինա
-  const cab = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.5, 2.1), glassMat);
-  cab.position.set(0, 1.14, -0.28); g.add(cab);
-
-  // տանիք
-  const roof = new THREE.Mesh(new THREE.BoxGeometry(1.66, 0.08, 1.9), bodyMat);
-  roof.position.set(0, 1.42, -0.28); g.add(roof);
-
-  // spoiler
-  const sp = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.09, 0.42), bodyMat);
-  sp.position.set(0, 1.02, -2.0); g.add(sp);
-
-  // անիվներ
-  const wGeo = new THREE.CylinderGeometry(0.42, 0.42, 0.34, 12);
-  const wheels = [];
-  [[-1,1.4,'fl'],[1,1.4,'fr'],[-1,-1.4,'rl'],[1,-1.4,'rr']].forEach(([px,pz,tag])=>{
-    const w = new THREE.Mesh(wGeo, wheelMat);
-    w.rotation.z = Math.PI/2;
-    w.position.set(px*0.98, 0.42, pz);
-    g.add(w);
-    wheels.push({mesh:w, tag});
-  });
-
-  // լուսարձակներ (փոքր emissive քառակուսիներ)
-  const hlMat = new THREE.MeshBasicMaterial({color:0xfff0c8});
-  const hl1 = new THREE.Mesh(new THREE.PlaneGeometry(0.5,0.2), hlMat);
-  hl1.position.set(-0.6, 0.62, 2.93); g.add(hl1);
-  const hl2 = hl1.clone(); hl2.position.x = 0.6; g.add(hl2);
-
-  // հետևի լույսեր
-  const tlMat = new THREE.MeshBasicMaterial({color:0xff2020});
-  const tl1 = new THREE.Mesh(new THREE.PlaneGeometry(0.55,0.18), tlMat);
-  tl1.position.set(-0.6, 0.72, -2.12); tl1.rotation.y = Math.PI; g.add(tl1);
-  const tl2 = tl1.clone(); tl2.position.x = 0.6; g.add(tl2);
-
-  // glow sprites — իրական լույսերի փոխարեն (շատ արագ)
-  const sprite1 = new THREE.Sprite(new THREE.SpriteMaterial({
-    map: isPlayer ? GLOW_WHITE : GLOW_WHITE,
-    blending: THREE.AdditiveBlending,
-    transparent: true, depthWrite: false,
-    opacity: isPlayer ? 0.75 : 0.45
-  }));
-  sprite1.scale.set(isPlayer ? 2.6 : 1.8, isPlayer ? 2.6 : 1.8, 1);
-  sprite1.position.set(-0.6, 0.62, 3.0);
-  g.add(sprite1);
-  const sprite2 = sprite1.clone();
-  sprite2.position.x = 0.6; g.add(sprite2);
-
-  const tailGlow = new THREE.Sprite(new THREE.SpriteMaterial({
-    map: GLOW_RED, blending: THREE.AdditiveBlending,
-    transparent:true, depthWrite:false, opacity: 0.7
-  }));
-  tailGlow.scale.set(1.8, 1.8, 1);
-  tailGlow.position.set(0, 0.72, -2.2);
-  g.add(tailGlow);
-
-  // գետնի լուսավոր հետք
-  const beam = new THREE.Mesh(
-    new THREE.PlaneGeometry(4.5, 16),
-    new THREE.MeshBasicMaterial({
-      map: makeBeamTex(),
-      transparent:true, blending:THREE.AdditiveBlending,
-      opacity: isPlayer ? 0.5 : 0.28,
-      depthWrite:false, side:THREE.DoubleSide
-    })
-  );
-  beam.rotation.x = -Math.PI/2;
-  beam.position.set(0, 0.03, 10);
-  g.add(beam);
-
-  return { group:g, wheels, bodyMat, tlMat, tailGlow, sprite1, sprite2 };
+/* ══════════ GLOW TEXTURES ══════════ */
+function glowTex(r,g,b){
+  const cv = document.createElement('canvas');
+  cv.width = 64; cv.height = 64;
+  const x = cv.getContext('2d');
+  const gr = x.createRadialGradient(32,32,0,32,32,32);
+  gr.addColorStop(0, `rgba(${r},${g},${b},1)`);
+  gr.addColorStop(0.25, `rgba(${r},${g},${b},0.7)`);
+  gr.addColorStop(0.6, `rgba(${r},${g},${b},0.2)`);
+  gr.addColorStop(1, `rgba(${r},${g},${b},0)`);
+  x.fillStyle = gr;
+  x.fillRect(0,0,64,64);
+  return new THREE.CanvasTexture(cv);
 }
+const GLOW_WARM = glowTex(255,220,140);
+const GLOW_WHITE = glowTex(255,250,230);
+const GLOW_RED = glowTex(255,70,60);
+const GLOW_BLUE = glowTex(100,160,255);
 
-function makeBeamTex(){
+function beamTex(){
   const cv = document.createElement('canvas');
   cv.width = 64; cv.height = 128;
   const x = cv.getContext('2d');
   const gr = x.createLinearGradient(0,0,0,128);
-  gr.addColorStop(0, 'rgba(255,240,200,0.5)');
-  gr.addColorStop(0.5, 'rgba(255,240,200,0.15)');
+  gr.addColorStop(0, 'rgba(255,245,215,0.55)');
+  gr.addColorStop(0.35, 'rgba(255,240,200,0.18)');
   gr.addColorStop(1, 'rgba(255,240,200,0)');
   x.fillStyle = gr;
   x.fillRect(0,0,64,128);
-  // եզրերի fade
-  const g2 = x.createLinearGradient(0,0,64,0);
-  g2.addColorStop(0,'rgba(0,0,0,1)');
-  g2.addColorStop(0.5,'rgba(0,0,0,0)');
-  g2.addColorStop(1,'rgba(0,0,0,1)');
+  const gr2 = x.createLinearGradient(0,0,64,0);
+  gr2.addColorStop(0, 'rgba(0,0,0,1)');
+  gr2.addColorStop(0.35, 'rgba(0,0,0,0)');
+  gr2.addColorStop(0.65, 'rgba(0,0,0,0)');
+  gr2.addColorStop(1, 'rgba(0,0,0,1)');
   x.globalCompositeOperation = 'destination-out';
-  x.fillStyle = g2;
+  x.fillStyle = gr2;
   x.fillRect(0,0,64,128);
   return new THREE.CanvasTexture(cv);
 }
+const BEAM_TEX = beamTex();
 
-const player = makeCarModel(0xff3b2f, true);
+/* ══════════ ՄԵՔԵՆԱ — մանրամասն մոդել ══════════ */
+function buildCar(colorHex, isPlayer){
+  const g = new THREE.Group();
+  const color = new THREE.Color(colorHex);
+
+  const bodyMat = new THREE.MeshStandardMaterial({
+    color, metalness:0.85, roughness:0.28,
+    envMapIntensity:0.7
+  });
+  const glassMat = new THREE.MeshStandardMaterial({
+    color:0x0a1428, metalness:0.85, roughness:0.08,
+    transparent:true, opacity:0.92
+  });
+  const trimMat = new THREE.MeshStandardMaterial({ color:0x0a0d14, metalness:0.55, roughness:0.4 });
+  const chromeMat = new THREE.MeshStandardMaterial({ color:0xcdd4dc, metalness:1.0, roughness:0.15 });
+  const tireMat = new THREE.MeshStandardMaterial({ color:0x0a0a0e, roughness:0.95, metalness:0.0 });
+
+  // ═══ CHASSIS (bottom) ═══
+  const chassis = new THREE.Mesh(new THREE.BoxGeometry(1.98, 0.18, 4.5), trimMat);
+  chassis.position.y = 0.36; g.add(chassis);
+
+  // ═══ LOWER BODY ═══
+  const lower = new THREE.Mesh(new THREE.BoxGeometry(1.96, 0.52, 4.4), bodyMat);
+  lower.position.y = 0.68; g.add(lower);
+
+  // ═══ SHOULDERS (mid body, slightly narrower) ═══
+  const shoulder = new THREE.Mesh(new THREE.BoxGeometry(1.86, 0.22, 4.25), bodyMat);
+  shoulder.position.y = 1.02; g.add(shoulder);
+
+  // ═══ NOSE (tapered front) ═══
+  const nose = new THREE.Mesh(new THREE.BoxGeometry(1.78, 0.46, 1.15), bodyMat);
+  nose.position.set(0, 0.78, 2.4); g.add(nose);
+  // Nose slope
+  const noseTop = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.16, 1.0), bodyMat);
+  noseTop.position.set(0, 1.02, 2.35);
+  noseTop.rotation.x = -0.08;
+  g.add(noseTop);
+
+  // ═══ HOOD ═══
+  const hood = new THREE.Mesh(new THREE.BoxGeometry(1.86, 0.12, 1.6), bodyMat);
+  hood.position.set(0, 1.16, 1.45);
+  hood.rotation.x = 0.04;
+  g.add(hood);
+
+  // ═══ CABIN ═══
+  const cabin = new THREE.Mesh(new THREE.BoxGeometry(1.72, 0.58, 2.2), glassMat);
+  cabin.position.set(0, 1.44, -0.35); g.add(cabin);
+
+  // ═══ ROOF ═══
+  const roof = new THREE.Mesh(new THREE.BoxGeometry(1.66, 0.10, 2.0), bodyMat);
+  roof.position.set(0, 1.76, -0.35); g.add(roof);
+
+  // ═══ A/B/C pillars ═══
+  const pMat = new THREE.MeshStandardMaterial({ color:0x080c14, roughness:0.5, metalness:0.4 });
+  [-0.86, 0.86].forEach(px=>{
+    const pA = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.62, 0.18), pMat);
+    pA.position.set(px, 1.44, 0.7); pA.rotation.x = -0.25; g.add(pA);
+    const pB = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.62, 0.14), pMat);
+    pB.position.set(px, 1.44, -0.35); g.add(pB);
+    const pC = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.62, 0.16), pMat);
+    pC.position.set(px, 1.44, -1.32); pC.rotation.x = 0.22; g.add(pC);
+  });
+
+  // ═══ TRUNK ═══
+  const trunk = new THREE.Mesh(new THREE.BoxGeometry(1.86, 0.14, 1.1), bodyMat);
+  trunk.position.set(0, 1.10, -1.75); g.add(trunk);
+
+  // ═══ REAR BUMPER ═══
+  const rBumper = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.32, 0.42), trimMat);
+  rBumper.position.set(0, 0.62, -2.28); g.add(rBumper);
+
+  // ═══ FRONT BUMPER ═══
+  const fBumper = new THREE.Mesh(new THREE.BoxGeometry(2.0, 0.34, 0.4), trimMat);
+  fBumper.position.set(0, 0.6, 2.85); g.add(fBumper);
+  // Chrome front lip
+  const lip = new THREE.Mesh(new THREE.BoxGeometry(1.88, 0.06, 0.15), chromeMat);
+  lip.position.set(0, 0.78, 3.02); g.add(lip);
+
+  // ═══ SPOILER ═══
+  const spoiler = new THREE.Mesh(new THREE.BoxGeometry(1.72, 0.09, 0.48), trimMat);
+  spoiler.position.set(0, 1.25, -2.05); g.add(spoiler);
+  [-0.68, 0.68].forEach(x=>{
+    const leg = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.24, 0.14), trimMat);
+    leg.position.set(x, 1.12, -2.05); g.add(leg);
+  });
+
+  // ═══ MIRRORS ═══
+  [-1.0, 1.0].forEach(x=>{
+    const m = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.10, 0.14), bodyMat);
+    m.position.set(x, 1.42, 0.72); g.add(m);
+    const arm = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.06, 0.08), trimMat);
+    arm.position.set(x*0.92, 1.38, 0.72); g.add(arm);
+  });
+
+  // ═══ WHEELS ═══
+  const wGeo = new THREE.CylinderGeometry(0.45, 0.45, 0.36, 20);
+  const rimGeo = new THREE.CylinderGeometry(0.28, 0.28, 0.38, 12);
+  const hubGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.40, 8);
+  const rotorGeo = new THREE.CylinderGeometry(0.22, 0.22, 0.30, 12);
+  const rotorMat = new THREE.MeshStandardMaterial({color:0x5a5a5a, metalness:0.9, roughness:0.3});
+  const wheels = [];
+  [[-1.02, 1.5, 'fl'], [1.02, 1.5, 'fr'], [-1.02, -1.5, 'rl'], [1.02, -1.5, 'rr']].forEach(([px, pz, tag])=>{
+    const w = new THREE.Mesh(wGeo, tireMat);
+    w.rotation.z = Math.PI/2;
+    w.position.set(px, 0.45, pz);
+    // Rim
+    const rim = new THREE.Mesh(rimGeo, chromeMat);
+    rim.rotation.z = Math.PI/2; w.add(rim);
+    // Hub
+    const hub = new THREE.Mesh(hubGeo, chromeMat);
+    hub.rotation.z = Math.PI/2; w.add(hub);
+    // Rotor
+    const rot = new THREE.Mesh(rotorGeo, rotorMat);
+    rot.rotation.z = Math.PI/2; w.add(rot);
+    g.add(w);
+    wheels.push({ mesh:w, tag });
+  });
+
+  // ═══ HEADLIGHTS ═══
+  const hlMat = new THREE.MeshBasicMaterial({ color:0xfff4d0 });
+  const hlGeo = new THREE.BoxGeometry(0.55, 0.20, 0.1);
+  [-0.62, 0.62].forEach(x=>{
+    const h = new THREE.Mesh(hlGeo, hlMat);
+    h.position.set(x, 0.82, 2.97); g.add(h);
+  });
+
+  // ═══ TAILLIGHTS ═══
+  const tlMat = new THREE.MeshBasicMaterial({ color:0xff2020 });
+  const tlGeo = new THREE.BoxGeometry(0.55, 0.18, 0.1);
+  [-0.62, 0.62].forEach(x=>{
+    const t = new THREE.Mesh(tlGeo, tlMat);
+    t.position.set(x, 0.78, -2.32); g.add(t);
+  });
+
+  // ═══ GLOW SPRITES ═══
+  const glowHeadMat = new THREE.SpriteMaterial({
+    map: GLOW_WHITE, blending: THREE.AdditiveBlending,
+    transparent:true, depthWrite:false, opacity: isPlayer ? 0.85 : 0.55
+  });
+  [-0.62, 0.62].forEach(x=>{
+    const sp = new THREE.Sprite(glowHeadMat);
+    sp.scale.set(isPlayer ? 3.0 : 2.0, isPlayer ? 3.0 : 2.0, 1);
+    sp.position.set(x, 0.82, 3.05);
+    g.add(sp);
+  });
+
+  const tailGlowMat = new THREE.SpriteMaterial({
+    map: GLOW_RED, blending: THREE.AdditiveBlending,
+    transparent:true, depthWrite:false, opacity: 0.85
+  });
+  const tailGlow = new THREE.Sprite(tailGlowMat);
+  tailGlow.scale.set(2.0, 2.0, 1);
+  tailGlow.position.set(0, 0.80, -2.35);
+  g.add(tailGlow);
+
+  // ═══ BEAM ═══
+  const beam = new THREE.Mesh(
+    new THREE.PlaneGeometry(4.2, 20),
+    new THREE.MeshBasicMaterial({
+      map: BEAM_TEX, transparent:true, blending:THREE.AdditiveBlending,
+      opacity: isPlayer ? 0.55 : 0.32, depthWrite:false, side:THREE.DoubleSide
+    })
+  );
+  beam.rotation.x = -Math.PI/2;
+  beam.position.set(0, 0.04, 12);
+  g.add(beam);
+
+  // ═══ NEON UNDERGLOW for player ═══
+  if(isPlayer){
+    const neon = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: GLOW_BLUE, blending:THREE.AdditiveBlending,
+      transparent:true, depthWrite:false, opacity: 0.5
+    }));
+    neon.scale.set(4, 4, 1);
+    neon.position.set(0, 0.15, 0);
+    g.add(neon);
+  }
+
+  return { group:g, wheels, tlMat, tailGlow, beam, bodyMat };
+}
+
+const player = buildCar(0xe83030, true);
 scene.add(player.group);
 
-/* ═══════════ ՇԵՆՔԵՐ ═══════════ */
-function makeBuildTex(){
+/* ══════════ ՇԵՆՔԵՐ ══════════ */
+function makeBuildTex(hue){
   const cv = document.createElement('canvas');
-  cv.width = 96; cv.height = 192;
+  cv.width = 128; cv.height = 256;
   const x = cv.getContext('2d');
-  x.fillStyle = '#080c16'; x.fillRect(0,0,96,192);
-  const cols = 5, rows = 12;
-  const cw = 96/cols, ch = 192/rows;
+  // base
+  x.fillStyle = hue === 0 ? '#0c1018' : hue === 1 ? '#141016' : '#0e1420';
+  x.fillRect(0,0,128,256);
+  const cols = 6, rows = 14;
+  const cw = 128/cols, ch = 256/rows;
+  // windows
   for(let r=1;r<rows-1;r++){
     for(let c=1;c<cols-1;c++){
-      if(Math.random() > 0.42){
-        const a = 0.35 + Math.random()*0.65;
-        const hue = Math.random();
-        x.globalAlpha = a;
-        x.fillStyle = hue>0.75 ? '#ffe0a0'
-                    : hue>0.5  ? '#a0d8ff'
-                    : hue>0.25 ? '#ffb070'
-                    : '#e0ecff';
-        x.fillRect(c*cw+1.5, r*ch+1.5, cw-3, ch-3);
+      const rnd = Math.random();
+      if(rnd > 0.42){
+        x.globalAlpha = 0.4 + Math.random()*0.6;
+        const h = Math.random();
+        x.fillStyle = h > 0.7 ? '#ffdc9a'
+                    : h > 0.45 ? '#a8d8ff'
+                    : h > 0.2 ? '#ffb477'
+                    : '#e8f0ff';
+        x.fillRect(c*cw + 2, r*ch + 2, cw - 4, ch - 4);
       }
     }
   }
   x.globalAlpha = 1;
+  // window detail (small reflections)
+  for(let i=0;i<200;i++){
+    x.fillStyle = `rgba(255,255,255,${Math.random()*0.06})`;
+    x.fillRect(Math.random()*128, Math.random()*256, 1, 1);
+  }
   const t = new THREE.CanvasTexture(cv);
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
   t.encoding = THREE.sRGBEncoding;
+  t.anisotropy = 4;
   return t;
 }
 
 const BOX_GEO = new THREE.BoxGeometry(1,1,1);
+const BLD_N = 40;
 const buildings = [];
-const BLD_N = 30;
 for(let i=0;i<BLD_N;i++){
-  const w = 12 + Math.random()*14;
-  const h = 18 + Math.random()*50;
-  const d = 12 + Math.random()*14;
-  const tex = makeBuildTex();
-  tex.repeat.set(1+Math.random()*1.2, 1.4+Math.random()*1.6);
-  const m = new THREE.Mesh(BOX_GEO, new THREE.MeshBasicMaterial({map:tex}));
+  const w = 11 + Math.random()*16;
+  const h = 16 + Math.random()*62;
+  const d = 11 + Math.random()*16;
+  const tex = makeBuildTex(i % 3);
+  tex.repeat.set(1 + Math.random()*1.3, 1.4 + Math.random()*1.8);
+  const m = new THREE.Mesh(BOX_GEO, new THREE.MeshLambertMaterial({
+    map:tex, emissive:0xffffff, emissiveMap:tex, emissiveIntensity:0.85,
+    color:0x8a94b0
+  }));
   m.scale.set(w,h,d);
   m.userData = {
     w,h,d,
     side: Math.random()>0.5 ? 1 : -1,
-    offset: 26 + Math.random()*26,
-    z: i * (2400/BLD_N)
+    offset: 28 + Math.random()*28,
+    z: i * (2400/BLD_N),
+    roofDetail: null
   };
   scene.add(m);
   buildings.push(m);
+  // Roof detail (antennas/hvac)
+  if(Math.random() > 0.5){
+    const rd = new THREE.Mesh(BOX_GEO, new THREE.MeshBasicMaterial({color:0x0a0e18}));
+    rd.scale.set(w*0.3, 2 + Math.random()*3, d*0.3);
+    rd.userData = { h, parent:m };
+    scene.add(rd);
+    m.userData.roofDetail = rd;
+  }
 }
 
-/* ═══════════ ՓՈՂՈՑԱՅԻՆ ԼՈՒՅՍԵՐ (առանց PointLight) ═══════════ */
-const lampPoleMat = new THREE.MeshLambertMaterial({color:0x2a3346});
-const POLE_GEO = new THREE.CylinderGeometry(0.13,0.16,7.2,6);
-const BULB_GEO = new THREE.SphereGeometry(0.42, 8, 6);
+/* ══════════ ՓՈՂՈՑԱՅԻՆ ԼՈՒՅՍԵՐ ══════════ */
+const POLE_GEO = new THREE.CylinderGeometry(0.14,0.18,7.5,6);
+const POLE_MAT = new THREE.MeshLambertMaterial({color:0x1a2230});
+const BULB_GEO = new THREE.SphereGeometry(0.4, 8, 6);
 const BULB_MAT = new THREE.MeshBasicMaterial({color:0xffe0a0});
-const LAMP_N = 16;
+const LAMP_N = 22;
 const lamps = [];
 for(let i=0;i<LAMP_N;i++){
-  const grp = new THREE.Group();
-  const pole = new THREE.Mesh(POLE_GEO, lampPoleMat);
-  pole.position.y = 3.6; grp.add(pole);
-  const arm = new THREE.Mesh(new THREE.BoxGeometry(1.5,0.14,0.14), lampPoleMat);
-  arm.position.set(-0.75, 7.15, 0); grp.add(arm);
+  const g = new THREE.Group();
+  const pole = new THREE.Mesh(POLE_GEO, POLE_MAT);
+  pole.position.y = 3.75; g.add(pole);
+  const arm = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.12, 0.12), POLE_MAT);
+  arm.position.set(-0.9, 7.3, 0); g.add(arm);
   const bulb = new THREE.Mesh(BULB_GEO, BULB_MAT);
-  bulb.position.set(-1.5, 7.0, 0); grp.add(bulb);
+  bulb.position.set(-1.75, 7.1, 0); g.add(bulb);
 
-  // գլոու sprite
+  // Glow sprite
   const sp = new THREE.Sprite(new THREE.SpriteMaterial({
     map: GLOW_WARM, blending:THREE.AdditiveBlending,
-    transparent:true, depthWrite:false, opacity: 0.75
+    transparent:true, depthWrite:false, opacity: 0.85
   }));
-  sp.scale.set(4.5, 4.5, 1);
-  sp.position.set(-1.5, 7.0, 0);
-  grp.add(sp);
+  sp.scale.set(5.5, 5.5, 1);
+  sp.position.set(-1.75, 7.1, 0);
+  g.add(sp);
 
-  // գետնի լույսի բիծ
+  // Light pool on ground
   const pool = new THREE.Mesh(
-    new THREE.PlaneGeometry(6, 6),
+    new THREE.PlaneGeometry(7, 7),
     new THREE.MeshBasicMaterial({
       map: GLOW_WARM, transparent:true, blending:THREE.AdditiveBlending,
-      opacity: 0.35, depthWrite:false
+      opacity: 0.42, depthWrite:false
     })
   );
   pool.rotation.x = -Math.PI/2;
-  pool.position.set(-1.5, 0.05, 0);
-  grp.add(pool);
+  pool.position.set(-1.75, 0.03, 0);
+  g.add(pool);
 
-  grp.userData = { side: i%2===0 ? 1 : -1, z: i * (2400/LAMP_N) };
-  scene.add(grp);
-  lamps.push(grp);
+  // Beam going down
+  const beam = new THREE.Mesh(
+    new THREE.PlaneGeometry(3, 7),
+    new THREE.MeshBasicMaterial({
+      map: GLOW_WARM, transparent:true, blending:THREE.AdditiveBlending,
+      opacity: 0.15, depthWrite:false, side:THREE.DoubleSide
+    })
+  );
+  beam.position.set(-1.75, 3.6, 0);
+  beam.rotation.y = Math.PI/2;
+  g.add(beam);
+
+  g.userData = { side: i%2===0 ? 1 : -1, z: i * (2400/LAMP_N) };
+  scene.add(g);
+  lamps.push(g);
 }
 
 function updateScenery(pz){
-  for(let i=0;i<buildings.length;i++){
-    const b = buildings[i];
-    while(b.userData.z < pz - 130) b.userData.z += 2400;
+  for(const b of buildings){
+    while(b.userData.z < pz - 140) b.userData.z += 2400;
     const z = b.userData.z;
     const side = b.userData.side;
-    b.position.set(roadX(z) + side*(b.userData.offset + b.userData.w/2), b.userData.h/2, z);
+    const px = roadX(z) + side*(b.userData.offset + b.userData.w/2);
+    b.position.set(px, b.userData.h/2, z);
     b.rotation.y = Math.atan(roadSlope(z));
+    if(b.userData.roofDetail){
+      b.userData.roofDetail.position.set(px, b.userData.h + 1, z);
+    }
   }
-  for(let i=0;i<lamps.length;i++){
-    const l = lamps[i];
-    while(l.userData.z < pz - 100) l.userData.z += 2400;
+  for(const l of lamps){
+    while(l.userData.z < pz - 110) l.userData.z += 2400;
     const z = l.userData.z;
     const side = l.userData.side;
-    l.position.set(roadX(z) + side*(ROAD_HALF + 3.2), 0, z);
+    l.position.set(roadX(z) + side*(ROAD_HALF + 3.3), 0, z);
     l.rotation.y = (side > 0 ? 0 : Math.PI) + Math.atan(roadSlope(z));
   }
 }
 
-/* ═══════════ ԵՐԹԵՎԵԿՈՒԹՅՈՒՆ ═══════════ */
-const TRAFFIC_COLORS = [0xff4040,0x4a9dff,0xffd24a,0x4affa0,0xff8a3d,0xb44aff,0xd8dce5,0x22d3d3];
+/* ══════════ SKID MARKS ══════════ */
+const skidGeo = new THREE.PlaneGeometry(0.32, 0.55);
+const SKID_MAX = 220;
+const skidPool = [];
+for(let i=0;i<SKID_MAX;i++){
+  const m = new THREE.Mesh(skidGeo, new THREE.MeshBasicMaterial({
+    color:0x000000, transparent:true, opacity:0, depthWrite:false
+  }));
+  m.rotation.x = -Math.PI/2;
+  m.visible = false;
+  m.renderOrder = 2;
+  scene.add(m);
+  skidPool.push({ mesh:m, life:0, maxLife:6 });
+}
+let skidIdx = 0;
+function placeSkid(worldX, worldZ, angle){
+  const s = skidPool[skidIdx];
+  skidIdx = (skidIdx + 1) % SKID_MAX;
+  s.mesh.position.set(worldX, 0.015, worldZ);
+  s.mesh.rotation.z = -angle;
+  s.mesh.material.opacity = 0.55;
+  s.mesh.visible = true;
+  s.life = s.maxLife;
+}
+function updateSkid(dt){
+  for(const s of skidPool){
+    if(!s.mesh.visible) continue;
+    s.life -= dt;
+    if(s.life <= 0){ s.mesh.visible = false; continue; }
+    s.mesh.material.opacity = Math.max(0, (s.life / s.maxLife) * 0.55);
+  }
+}
+
+/* ══════════ TRAFFIC ══════════ */
+const TRAFFIC_COLORS = [0xd04040, 0x4060b0, 0xd0a840, 0x40b080, 0xc07030, 0x7050b0, 0xd8dde8, 0x30a8a8];
 const traffic = [];
 const POOL = [];
-for(let i=0;i<10;i++){
-  const c = makeCarModel(TRAFFIC_COLORS[i % TRAFFIC_COLORS.length], false);
+for(let i=0;i<9;i++){
+  const c = buildCar(TRAFFIC_COLORS[i % TRAFFIC_COLORS.length], false);
   c.group.visible = false;
   scene.add(c.group);
   POOL.push(c);
@@ -743,17 +1104,22 @@ function spawnTraffic(){
   const lvl = LEVELS[S.level-1];
   const free = POOL.find(c => !c.group.visible);
   if(!free) return;
+  // lane: 0,1 = LEFT (oncoming), 2,3 = RIGHT (same dir)
   const lane = Math.floor(Math.random()*4);
-  const onc = lane < 2;
-  const z = S.z + 320 + Math.random()*280;
+  const oncoming = lane < 2;
+  const z = S.z + 320 + Math.random()*300;
   let near = 0;
-  for(const t of traffic) if(Math.abs(t.z - z) < 130) near++;
+  for(const t of traffic) if(Math.abs(t.z - z) < 140) near++;
   if(near >= 2) return;
-  for(const t of traffic) if(t.lane === lane && Math.abs(t.z - z) < 80) return;
-  const spd = onc ? 15 + Math.random()*7 : 10 + Math.random()*6;
+  for(const t of traffic) if(t.lane === lane && Math.abs(t.z - z) < 90) return;
+  const spd = oncoming ? 16 + Math.random()*8 : 11 + Math.random()*7;
   free.group.visible = true;
-  free.group.position.set(0,0,z);
-  traffic.push({ obj:free, lane, off:LANE_OFF[lane], z, dir:onc?-1:1, spd });
+  free.group.position.set(0, 0, z);
+  traffic.push({
+    obj: free, lane, off: LANE_OFF[lane], z,
+    dir: oncoming ? -1 : 1, spd, oncoming,
+    passed: false
+  });
 }
 
 function updateTraffic(dt){
@@ -765,8 +1131,10 @@ function updateTraffic(dt){
     let h = Math.atan(roadSlope(t.z));
     if(t.dir < 0) h += Math.PI;
     t.obj.group.rotation.y = h;
-    for(const w of t.obj.wheels) w.mesh.rotation.x -= t.spd * dt * 1.7;
-    if(t.z < S.z - 70 || t.z > S.z + 1400){
+    for(const w of t.obj.wheels) w.mesh.rotation.x -= t.spd * dt * 1.85;
+
+    // Cleanup
+    if(t.z < S.z - 70 || t.z > S.z + 1500){
       t.obj.group.visible = false;
       traffic.splice(i,1);
     }
@@ -777,62 +1145,77 @@ function clearTraffic(){
   traffic.length = 0;
 }
 
-/* ═══════════ ԲԱԽՈՒՄ ═══════════ */
+/* ══════════ ԲԱԽՈՒՄ ══════════ */
 function checkCollisions(){
   if(S.hitCd > 0) return;
   for(let i=traffic.length-1;i>=0;i--){
     const t = traffic[i];
     const cx = t.obj.group.position.x;
     const cz = t.obj.group.position.z;
-    if(Math.abs(S.x - cx) < 1.85 && Math.abs(S.z - cz) < 3.8){
+    if(Math.abs(S.x - cx) < 1.9 && Math.abs(S.z - cz) < 4.0){
       handleHit(t, i); return;
     }
   }
 }
 function handleHit(t, idx){
-  S.hitCd = 0.7;
+  S.hitCd = 0.8;
   const sp = S.speed;
-  if(sp >= 150){ Aud.crash(); doCrash('ՎԹԱՐ', 'Արագությունը չափազանց բարձր էր'); return; }
+  // Only instant crash at very high speed
+  if(sp >= 175){
+    Aud.crash();
+    doCrash('ՎԹԱՐ', '175+ կմ/ժ բախում');
+    return;
+  }
   let dmg;
-  if(sp >= 110) dmg = 48;
-  else if(sp >= 80) dmg = 30;
-  else if(sp >= 50) dmg = 15;
-  else if(sp >= 25) dmg = 7;
-  else dmg = 2;
+  if(sp >= 140) dmg = 55;
+  else if(sp >= 100) dmg = 32;
+  else if(sp >= 70) dmg = 20;
+  else if(sp >= 40) dmg = 10;
+  else if(sp >= 15) dmg = 4;
+  else dmg = 1;
   S.health -= dmg;
-  S.speed *= (sp >= 80 ? 0.42 : 0.7);
-  S.shake = Math.min(1.4, 0.3 + sp/180);
+  // Speed drop
+  const drop = sp >= 80 ? 0.4 : 0.65;
+  S.vx *= drop; S.vz *= drop;
+  S.shake = Math.min(1.3, 0.35 + sp/200);
   flashDmg();
   Aud.bump(Math.min(1, sp/150));
   t.obj.group.visible = false;
   traffic.splice(idx,1);
-  if(S.health <= 0){ Aud.crash(); doCrash('ՎԹԱՐ', 'Մեքենան վնասվեց'); }
+  if(S.health <= 0){
+    Aud.crash();
+    doCrash('ՎԹԱՐ', 'Մեքենան վնասվեց');
+  }
 }
 function flashDmg(){
   const e = document.getElementById('flash');
-  e.style.transition='none'; e.style.opacity='1';
-  requestAnimationFrame(()=>{ e.style.transition='opacity .5s'; e.style.opacity='0'; });
+  e.style.transition = 'none'; e.style.opacity = '1';
+  requestAnimationFrame(()=>{
+    e.style.transition = 'opacity .5s'; e.style.opacity = '0';
+  });
 }
 
-/* ═══════════ ՄԱԿԱՐԴԱԿ ═══════════ */
+/* ══════════ ՄԱԿԱՐԴԱԿ ══════════ */
 function startLevel(n){
   const lvl = LEVELS[n-1];
   S.level = n; S.levelLen = lvl.len;
-  S.speed = 0; S.z = 0;
   S.x = roadX(0) + LANE_OFF[2];
+  S.z = 0;
+  S.vx = 0; S.vz = 0;
   S.heading = roadH(0);
-  S.steer = 0; S.health = 100;
-  S.hitCd = 0; S.shake = 0; S.time = 0;
-  S.countdown = 3.0; S._lastC = undefined;
-  S.phase = 'countdown';
-  S.camPitch = 0.18;
+  S.steer = 0; S.speed = 0; S.slip = 0;
+  S.health = 100; S.hitCd = 0; S.shake = 0;
+  S.time = 0; S.countdown = 3.0; S._lc = undefined;
+  S.phase = 'countdown'; S.camPitch = 0.1;
 
-  S.camX = S.x - Math.sin(S.heading)*9;
-  S.camY = 3.6;
-  S.camZ = S.z - Math.cos(S.heading)*9;
-  S.camLX = S.x; S.camLY = 1.5; S.camLZ = S.z + 10;
+  S.camX = S.x - Math.sin(S.heading)*8;
+  S.camY = 2.6;
+  S.camZ = S.z - Math.cos(S.heading)*8;
+  S.camLX = S.x; S.camLY = 1.3; S.camLZ = S.z + 15;
 
   clearTraffic();
+  for(const s of skidPool){ s.mesh.visible = false; s.life = 0; }
+
   player.group.position.set(S.x, 0, S.z);
   player.group.rotation.y = S.heading;
 
@@ -846,14 +1229,14 @@ function startLevel(n){
   document.getElementById('btnRetry').onclick = retryHandler;
 
   Aud.init(); Aud.resume(); Aud.startMusic();
-  // ցույց տալ "3" և միանգամից beep
-  showMsg('3', 'gold');
-  Aud.beep(false);
-  S._lastC = 3;
+  showMsg('3', 'gold'); Aud.beep(false);
+  S._lc = 3;
 }
+
 function doCrash(title, sub){
   if(S.phase === 'crash') return;
-  S.phase = 'crash'; S.speed = 0; S.shake = 1.6;
+  S.phase = 'crash'; S.vx = 0; S.vz = 0; S.speed = 0;
+  S.shake = 1.8;
   showMsg(title, 'red');
   setTimeout(()=>{
     document.getElementById('endTitle').textContent = title;
@@ -862,16 +1245,17 @@ function doCrash(title, sub){
     document.getElementById('btnRetry').textContent = 'ԿՐԿՆԵԼ';
     document.getElementById('endScreen').classList.add('show');
     Aud.stopMusic();
-  }, 900);
+  }, 1000);
 }
+
 function doWin(){
   if(S.phase === 'win') return;
-  S.phase = 'win'; S.speed = 0;
+  S.phase = 'win'; S.vx = 0; S.vz = 0; S.speed = 0;
   Aud.ding();
   showMsg('ՀԱՂԹԱՆԱԿ', 'green');
   if(!S.best['lv'+S.level] || S.best['lv'+S.level] > S.time) S.best['lv'+S.level] = S.time;
   S.best.unlocked = Math.max(S.best.unlocked||1, Math.min(5, S.level+1));
-  localStorage.setItem('night_v3', JSON.stringify(S.best));
+  localStorage.setItem('nv4', JSON.stringify(S.best));
   setTimeout(()=>{
     document.getElementById('endTitle').textContent = 'ՀԱՂԹԱՆԱԿ';
     document.getElementById('endTitle').style.color = '#8affc0';
@@ -879,75 +1263,147 @@ function doWin(){
     document.getElementById('btnRetry').textContent = S.level < 5 ? 'ՀԱՋՈՐԴԸ ▶' : 'ԿՐԿՆԵԼ';
     document.getElementById('endScreen').classList.add('show');
     Aud.stopMusic();
-  }, 1100);
+  }, 1200);
 }
 
-/* ═══════════ ՖԻԶԻԿԱ — արագ, ուղիղ ═══════════ */
+/* ══════════ ՖԻԶԻԿԱ — DRIFT MODEL ══════════ */
 function updatePhysics(dt){
-  // արագացում
+  const lvl = LEVELS[S.level-1];
+
+  // ═══ ՍԱՀՈՒՆ ՂԵԿ ═══
+  let target = 0;
+  if(IN.left) target = -1;
+  if(IN.right) target = 1;
+  // Սահուն մոտեցում
+  const steerRate = 4.5;
+  S.steer += (target - S.steer) * Math.min(1, steerRate * dt);
+  // Սահուն վերադարձ կենտրոն
+  if(!IN.left && !IN.right){
+    S.steer += (0 - S.steer) * Math.min(1, 5.5 * dt);
+    if(Math.abs(S.steer) < 0.003) S.steer = 0;
+  }
+
+  // ═══ ՎԵԼՈՍԻՏԻ ՎԵԿՏՈՐ ═══
+  const fx = Math.sin(S.heading);
+  const fz = Math.cos(S.heading);
+  const rx = Math.cos(S.heading);
+  const rz = -Math.sin(S.heading);
+
+  let vF = S.vx*fx + S.vz*fz;
+  let vR = S.vx*rx + S.vz*rz;
+
+  const maxF_ms = MAX_KMH / 3.6;
+
+  // ═══ ԳԱԶ ═══
   if(IN.gas){
-    const a = S.speed < 60 ? 78 : (S.speed < 130 ? 52 : 30);
-    S.speed += a * dt;
+    const sr = Math.max(0, vF) / maxF_ms;
+    const aMul = 1 - Math.min(0.7, sr * sr);
+    vF += 13.5 * aMul * dt;
   }
-  if(IN.brake) S.speed -= 130 * dt;
-  if(!IN.gas && !IN.brake) S.speed -= 18 * dt;
-  if(S.speed < 0) S.speed = 0;
-  if(S.speed > MAX_SPEED) S.speed = MAX_SPEED;
-
-  // ղեկ — արագ արձագանք
-  let tgt = 0;
-  if(IN.left) tgt = -1;
-  if(IN.right) tgt = 1;
-  if(tgt !== 0){
-    S.steer += (tgt - S.steer) * Math.min(1, 14 * dt);
-  } else {
-    S.steer += (0 - S.steer) * Math.min(1, 12 * dt);
-    if(Math.abs(S.steer) < 0.004) S.steer = 0;
+  // ═══ ԱՐԳԵԼ ═══
+  if(IN.brake){
+    if(vF > 0.5) vF -= 22 * dt;
+    else vF -= 6 * dt;
   }
+  // ═══ ԴԱՆԴԱՂԱՑՈՒՄ ═══
+  if(!IN.gas && !IN.brake){
+    if(Math.abs(vF) > 0.1) vF -= Math.sign(vF) * 3.5 * dt;
+    else vF = 0;
+  }
+  // Air drag
+  vF -= vF * 0.045 * dt;
+  if(vF > maxF_ms) vF = maxF_ms;
+  if(vF < -8) vF = -8;
 
-  // պտույտ. աջ = heading նվազում
-  const spF = Math.min(1, S.speed / 25);
-  const damp = 1 - 0.25 * Math.min(1, S.speed / MAX_SPEED);
-  S.heading -= S.steer * 2.8 * spF * damp * dt;
+  // ═══ ԿՈՂԱՅԻՆ ԿՑՈՒՄ (GRIP / DRIFT) ═══
+  const speedAbs = Math.abs(vF);
+  // Higher speed + high steering = less grip = drift
+  const slipFactor = Math.abs(S.steer) * Math.min(1, speedAbs / 30);
+  const gripBase = 14;
+  const grip = gripBase * (1 - 0.78 * slipFactor);
+  vR -= vR * Math.min(1, grip * dt);
 
-  // դիրք
-  const v = S.speed * KMH_MS;
-  S.x += Math.sin(S.heading) * v * dt;
-  S.z += Math.cos(S.heading) * v * dt;
+  // ═══ ՊՏՈՒՅՏ ═══
+  const spdFac = Math.min(1, speedAbs / 12);
+  const turnRate = 1.55 * spdFac;
+  // Աջ = heading աճում (դրական X ուղղություն)
+  S.heading += S.steer * turnRate * dt;
 
-  // պատնեշ
+  // ═══ ՆՈՐ ՎԵԿՏՈՐՆԵՐ ═══
+  const fx2 = Math.sin(S.heading);
+  const fz2 = Math.cos(S.heading);
+  const rx2 = Math.cos(S.heading);
+  const rz2 = -Math.sin(S.heading);
+
+  S.vx = vF*fx2 + vR*rx2;
+  S.vz = vF*fz2 + vR*rz2;
+
+  // ═══ ԴԻՐՔ ═══
+  S.x += S.vx * dt;
+  S.z += S.vz * dt;
+
+  // ═══ ՊԱՏՆԵՇ ═══
   const cX = roadX(S.z);
   const off = S.x - cX;
-  const lim = ROAD_HALF - 1.1;
+  const lim = ROAD_HALF - 1.3;
   if(off > lim){
     S.x = cX + lim;
-    if(S.speed > 40) S.speed -= 30 * dt;
-    S.shake = Math.max(S.shake, 0.06);
+    // Bounce soft
+    S.vx -= Math.sign(S.vx) * Math.abs(S.vx) * 0.5;
+    S.speed *= 0.96;
+    S.shake = Math.max(S.shake, 0.08);
   } else if(off < -lim){
     S.x = cX - lim;
-    if(S.speed > 40) S.speed -= 30 * dt;
-    S.shake = Math.max(S.shake, 0.06);
+    S.vx -= Math.sign(S.vx) * Math.abs(S.vx) * 0.5;
+    S.speed *= 0.96;
+    S.shake = Math.max(S.shake, 0.08);
   }
+
+  // ═══ ԱՐԱԳՈՒԹՅՈՒՆ (HUD) ═══
+  S.speed = Math.abs(vF) * 3.6;
+  S.slip = Math.min(1, Math.abs(vR) / Math.max(3, speedAbs));
 
   S.hitCd -= dt;
 
-  // մեքենայի տեսք
+  // ═══ ՄԵՔԵՆԱՅԻ ՏԵՍՔ ═══
   player.group.position.set(S.x, 0, S.z);
   player.group.rotation.y = S.heading;
-  const spin = (S.speed * KMH_MS) * dt * 1.7;
+
+  const spin = Math.abs(vF) * dt * 1.85;
   for(const w of player.wheels){
     w.mesh.rotation.x -= spin;
-    if(w.tag === 'fl' || w.tag === 'fr') w.mesh.rotation.y = S.steer * 0.55;
+    if(w.tag === 'fl' || w.tag === 'fr') w.mesh.rotation.y = S.steer * 0.5;
   }
-  // արգելակային լույս
+  // Թեքվածություն (roll) սայթաքելիս
+  const roll = -S.steer * 0.06 - vR * 0.008;
+  player.group.rotation.z = roll;
+
+  // Brake lights
   const braking = IN.brake || (!IN.gas && S.speed > 3);
   player.tailGlow.material.opacity = braking ? 1.0 : 0.55;
   player.tlMat.color.setHex(braking ? 0xff1010 : 0xff2020);
 
-  // կանգառի գոտի
+  // ═══ SKID MARKS ═══
+  if(S.slip > 0.18 && speedAbs > 8){
+    const rxW = Math.cos(S.heading);
+    const rzW = -Math.sin(S.heading);
+    const bxo = Math.sin(S.heading);
+    const bzo = Math.cos(S.heading);
+    // Rear wheel world positions
+    const wxL = S.x - bxo*1.5 + rxW*-1.02;
+    const wzL = S.z - bzo*1.5 + rzW*-1.02;
+    const wxR = S.x - bxo*1.5 + rxW*1.02;
+    const wzR = S.z - bzo*1.5 + rzW*1.02;
+    if(Math.random() < 0.6){
+      placeSkid(wxL, wzL, S.heading);
+      placeSkid(wxR, wzR, S.heading);
+    }
+  }
+
+  // ═══ ԿԱՆԳԱՌԻ ԳՈՏԻ ═══
   const zoneStart = S.levelLen - 220;
   if(S.z >= zoneStart && S.z < S.levelLen + 30 && S.phase === 'play'){
-    if(S.speed < 7) doWin();
+    if(S.speed < 6) doWin();
   }
   if(S.z > S.levelLen + 40 && S.phase === 'play'){
     Aud.crash();
@@ -955,100 +1411,163 @@ function updatePhysics(dt){
   }
 }
 
-/* ═══════════ ԿԱՄԵՐԱ — սահուն, արագ ═══════════ */
+/* ══════════ ԱՆՑՆՈՂ ՄԵՔԵՆԱՆԵՐԻ ՓՉՈՑ ══════════ */
+function checkTrafficWake(dt){
+  for(const t of traffic){
+    const cx = t.obj.group.position.x;
+    const cz = t.obj.group.position.z;
+    const dx = S.x - cx;
+    const dz = S.z - cz;
+    const d2 = dx*dx + dz*dz;
+    if(d2 < 49){ // within 7m
+      const d = Math.sqrt(d2);
+      // Lateral push
+      const push = (1 - d/7) * 3.5;
+      const nx = dx / Math.max(0.5, d);
+      S.vx += nx * push * dt * 3;
+      // Whoosh once
+      if(!t.passed && d < 4.5){
+        t.passed = true;
+        Aud.whoosh();
+        S.camShake = Math.max(S.camShake, 0.3);
+      }
+    } else if(t.passed === false && d2 > 64){
+      // reset if too far
+    }
+  }
+}
+
+/* ══════════ ԿԱՄԵՐԱ — սահուն, կինեմատոգրաֆիկ ══════════ */
 function updateCamera(dt){
   const h = S.heading;
   const fx = Math.sin(h), fz = Math.cos(h);
 
-  const dist = 9.5 - S.camPitch * 3.5;
-  const high = 3.4 + S.camPitch * 4.5;
+  const dist = 7.8 - S.camPitch * 3.0;
+  const high = 2.6 + S.camPitch * 4.2;
 
   const tx = S.x - fx * dist;
   const ty = high;
   const tz = S.z - fz * dist;
 
-  // framerate-independent smoothing (rate=20 ≈ շատ արագ, բայց սահուն)
-  const k = 1 - Math.exp(-20 * dt);
+  const k = 1 - Math.exp(-11 * dt);
   S.camX += (tx - S.camX) * k;
   S.camY += (ty - S.camY) * k;
   S.camZ += (tz - S.camZ) * k;
 
-  const lx = S.x + fx * 12 + S.steer * 2.0;
-  const ly = 1.5;
-  const lz = S.z + fz * 12;
-  const lk = 1 - Math.exp(-22 * dt);
+  const lx = S.x + fx * 16 + S.steer * 2.5;
+  const ly = 1.2;
+  const lz = S.z + fz * 16;
+  const lk = 1 - Math.exp(-14 * dt);
   S.camLX += (lx - S.camLX) * lk;
   S.camLY += (ly - S.camLY) * lk;
   S.camLZ += (lz - S.camLZ) * lk;
 
-  let sx = 0, sy = 0;
+  let sx=0, sy=0, sz=0;
+  if(S.camShake > 0.005){
+    sx = (Math.random()-0.5) * S.camShake;
+    sy = (Math.random()-0.5) * S.camShake * 0.7;
+    S.camShake *= Math.pow(0.05, dt);
+    if(S.camShake < 0.005) S.camShake = 0;
+  }
   if(S.shake > 0.005){
-    sx = (Math.random()-0.5) * S.shake * 0.9;
-    sy = (Math.random()-0.5) * S.shake * 0.7;
+    sx += (Math.random()-0.5) * S.shake * 1.0;
+    sy += (Math.random()-0.5) * S.shake * 0.8;
     S.shake *= Math.pow(0.03, dt);
     if(S.shake < 0.005) S.shake = 0;
   }
 
-  camera.position.set(S.camX + sx, S.camY + sy, S.camZ);
+  camera.position.set(S.camX + sx, S.camY + sy, S.camZ + sz);
   camera.lookAt(S.camLX, S.camLY, S.camLZ);
 
-  const tFov = 72 + (S.speed / MAX_SPEED) * 14;
-  camera.fov += (tFov - camera.fov) * Math.min(1, 5*dt);
+  // Speed FOV
+  const tFov = 70 + (S.speed / MAX_KMH) * 16;
+  camera.fov += (tFov - camera.fov) * Math.min(1, 3*dt);
   camera.updateProjectionMatrix();
-  camera.rotation.z += S.steer * 0.022;
+
+  // Subtle roll
+  camera.rotation.z += S.steer * 0.02 + S.slip * 0.04;
 }
 
-/* ═══════════ HUD + MAP + ARROW ═══════════ */
+/* ══════════ HUD + MAP + ARROW ══════════ */
 const mapCv = document.getElementById('mapCanvas');
 const mapCtx = mapCv.getContext('2d');
 function drawMap(){
   const w = mapCv.width, h = mapCv.height;
   mapCtx.clearRect(0,0,w,h);
-  mapCtx.fillStyle = 'rgba(6,10,22,0.5)';
+  const grad = mapCtx.createRadialGradient(w/2,h/2,20,w/2,h/2,w*0.75);
+  grad.addColorStop(0,'rgba(20,32,58,0.9)');
+  grad.addColorStop(1,'rgba(6,10,22,0.55)');
+  mapCtx.fillStyle = grad;
   mapCtx.fillRect(0,0,w,h);
+
   const range = 300;
   const cx = w/2, cy = h/2;
   const sc = w / range;
-  // ճանապարհ
+
+  // Road
   mapCtx.strokeStyle = 'rgba(120,180,255,0.55)';
-  mapCtx.lineWidth = 22 * sc;
+  mapCtx.lineWidth = 24 * sc;
   mapCtx.lineCap = 'round';
+  mapCtx.lineJoin = 'round';
   mapCtx.beginPath();
+  let first = true;
   for(let z = S.z - range/2; z <= S.z + range/2; z += 10){
     const mx = cx + (roadX(z) - S.x) * sc;
     const my = cy - (z - S.z) * sc;
-    if(z === S.z - range/2 + (S.z - range/2)%10 ) mapCtx.moveTo(mx,my);
-    else mapCtx.lineTo(mx, my);
+    if(first){ mapCtx.moveTo(mx,my); first = false; }
+    else mapCtx.lineTo(mx,my);
   }
   mapCtx.stroke();
-  // թրաֆիկ
-  mapCtx.fillStyle = '#ff5a5a';
+
+  // Center line
+  mapCtx.strokeStyle = 'rgba(220,180,60,0.5)';
+  mapCtx.lineWidth = 1.2;
+  mapCtx.beginPath();
+  first = true;
+  for(let z = S.z - range/2; z <= S.z + range/2; z += 10){
+    const mx = cx + (roadX(z) - S.x) * sc;
+    const my = cy - (z - S.z) * sc;
+    if(first){ mapCtx.moveTo(mx,my); first = false; }
+    else mapCtx.lineTo(mx,my);
+  }
+  mapCtx.stroke();
+
+  // Traffic
   for(const t of traffic){
     const tx = cx + (t.obj.group.position.x - S.x) * sc;
     const ty = cy - (t.obj.group.position.z - S.z) * sc;
     if(tx < -6 || tx > w+6 || ty < -6 || ty > h+6) continue;
+    mapCtx.fillStyle = t.oncoming ? '#ff5a5a' : '#ffd45e';
     mapCtx.beginPath(); mapCtx.arc(tx, ty, 4, 0, 6.3); mapCtx.fill();
   }
-  // նպատակակետ
+
+  // Finish
   const fz = S.levelLen;
   const fx = cx + (roadX(fz) - S.x) * sc;
   const fy = cy - (fz - S.z) * sc;
   if(fy > -20 && fy < h+20){
-    mapCtx.fillStyle = '#ffd45e';
-    mapCtx.beginPath(); mapCtx.arc(fx, fy, 8, 0, 6.3); mapCtx.fill();
+    mapCtx.fillStyle = '#8affc0';
+    mapCtx.beginPath(); mapCtx.arc(fx, fy, 9, 0, 6.3); mapCtx.fill();
     mapCtx.strokeStyle = '#fff'; mapCtx.lineWidth = 2; mapCtx.stroke();
+    mapCtx.fillStyle = '#000';
+    mapCtx.font = 'bold 11px sans-serif';
+    mapCtx.textAlign = 'center';
+    mapCtx.textBaseline = 'middle';
+    mapCtx.fillText('⚑', fx, fy+1);
   }
-  // խաղացող (եռանկյուն)
+
+  // Player
   mapCtx.save();
   mapCtx.translate(cx, cy);
   mapCtx.rotate(-S.heading);
   mapCtx.fillStyle = '#5eead4';
   mapCtx.beginPath();
-  mapCtx.moveTo(0, -10); mapCtx.lineTo(-7, 8); mapCtx.lineTo(7, 8);
+  mapCtx.moveTo(0, -11); mapCtx.lineTo(-7, 9); mapCtx.lineTo(7, 9);
   mapCtx.closePath(); mapCtx.fill();
   mapCtx.strokeStyle = '#fff'; mapCtx.lineWidth = 1.5; mapCtx.stroke();
   mapCtx.restore();
 }
+
 const arrowEl = document.getElementById('objArrow');
 const labelEl = document.getElementById('objLabel');
 function updateObjective(){
@@ -1057,7 +1576,7 @@ function updateObjective(){
   const dist = Math.sqrt(dx*dx + dz*dz);
   const rel = Math.atan2(dx, dz) - S.heading;
   arrowEl.style.transform = 'rotate(' + (rel * 180/Math.PI) + 'deg)';
-  arrowEl.style.opacity = dist < 200 ? '0.5' : '1';
+  arrowEl.style.opacity = dist < 200 ? '0.45' : '1';
   labelEl.textContent = Math.max(0, Math.round(dist)) + ' մ';
 }
 
@@ -1070,8 +1589,10 @@ function updateHUD(){
   else e.style.background = 'linear-gradient(90deg,#7ee7ff,#5eb0ff)';
   e.style.webkitBackgroundClip = 'text';
   e.style.backgroundClip = 'text';
+
   const rem = Math.max(0, S.levelLen - S.z);
   document.getElementById('distVal').textContent = Math.round(rem) + ' մ';
+
   const hp = Math.max(0, Math.min(100, S.health));
   const bar = document.getElementById('hpBar');
   bar.style.width = hp + '%';
@@ -1080,9 +1601,11 @@ function updateHUD(){
     : hp > 30
       ? 'linear-gradient(90deg,#ffd45e,#ff9a45)'
       : 'linear-gradient(90deg,#ff4d4d,#ff2020)';
+
   document.getElementById('wheelIn').style.transform = 'rotate(' + (S.steer*150) + 'deg)';
   document.getElementById('spdFx').style.opacity = Math.max(0, (S.speed-110)/70);
 }
+
 let msgT = null;
 function showMsg(text, cls){
   const m = document.getElementById('msg');
@@ -1093,7 +1616,7 @@ function showMsg(text, cls){
   m.classList.add('show');
 }
 
-/* ═══════════ INPUT ═══════════ */
+/* ══════════ INPUT ══════════ */
 function bindHold(el, key){
   const on = e => { e.preventDefault(); IN[key]=true; el.classList.add('on'); Aud.init(); Aud.resume(); };
   const off = e => { e.preventDefault(); IN[key]=false; el.classList.remove('on'); };
@@ -1126,19 +1649,18 @@ addEventListener('keyup', e=>{
   if(k==='arrowright'||k==='d') IN.right = false;
 });
 
-// կամերայի ղեկավարում աջ եզրից
 (function(){
   const z = document.getElementById('camZone');
   let drag = false, sy = 0, sp = 0;
-  const dn = e => { e.preventDefault(); drag=true; const t=e.touches?e.touches[0]:e; sy=t.clientY; sp=S.camPitch; };
+  const dn = e => { e.preventDefault(); drag = true; const t = e.touches?e.touches[0]:e; sy = t.clientY; sp = S.camPitch; };
   const mv = e => {
     if(!drag) return;
     e.preventDefault();
     const t = e.touches?e.touches[0]:e;
     const dy = t.clientY - sy;
-    S.camPitch = Math.max(-0.3, Math.min(0.7, sp - dy/320));
+    S.camPitch = Math.max(-0.25, Math.min(0.75, sp - dy/320));
   };
-  const up = ()=> drag=false;
+  const up = ()=> drag = false;
   z.addEventListener('touchstart', dn, {passive:false});
   z.addEventListener('touchmove', mv, {passive:false});
   z.addEventListener('touchend', up);
@@ -1147,11 +1669,10 @@ addEventListener('keyup', e=>{
   addEventListener('mouseup', up);
   z.addEventListener('wheel', e=>{
     e.preventDefault();
-    S.camPitch = Math.max(-0.3, Math.min(0.7, S.camPitch + e.deltaY*0.001));
+    S.camPitch = Math.max(-0.25, Math.min(0.75, S.camPitch + e.deltaY*0.001));
   }, {passive:false});
 })();
 
-// կանխել ավելորդ գործողություններ
 document.addEventListener('gesturestart', e=>e.preventDefault());
 document.addEventListener('gesturechange', e=>e.preventDefault());
 document.addEventListener('gestureend', e=>e.preventDefault());
@@ -1160,7 +1681,7 @@ document.addEventListener('dblclick', e=>e.preventDefault());
 document.addEventListener('selectstart', e=>e.preventDefault());
 document.addEventListener('touchmove', e=>{ if(e.touches.length>1) e.preventDefault(); }, {passive:false});
 
-/* ═══════════ ՄԵՆՅՈՒ ═══════════ */
+/* ══════════ MENU ══════════ */
 function buildMenu(){
   const wrap = document.getElementById('levels');
   wrap.innerHTML = '';
@@ -1217,14 +1738,14 @@ document.getElementById('pauseBtn').onclick = ()=>{
     document.getElementById('btnRetry').onclick = ()=>{
       document.getElementById('endScreen').classList.remove('show');
       S.phase = 'countdown';
-      S.countdown = 1.5; S._lastC = undefined;
+      S.countdown = 1.5; S._lc = undefined;
       document.getElementById('btnRetry').onclick = retryHandler;
       Aud.startMusic();
     };
   }
 };
 
-/* ═══════════ ՉԱՓԵՐ ═══════════ */
+/* ══════════ ՉԱՓԵՐ ══════════ */
 function resize(){
   const w = app.clientWidth || window.innerWidth;
   const h = app.clientHeight || window.innerHeight;
@@ -1237,36 +1758,37 @@ function resize(){
 addEventListener('resize', resize);
 addEventListener('orientationchange', ()=>setTimeout(resize, 120));
 
-/* ═══════════ ՀԻՄՆԱԿԱՆ ՑԻԿԼ ═══════════ */
+/* ══════════ ՑԻԿԼ ══════════ */
 let lastT = performance.now();
 let spawnT = 0;
 let mapT = 0;
 
 function loop(now){
   requestAnimationFrame(loop);
-  const rawDt = Math.min(0.5, (now - lastT) / 1000); // իրական ժամանակ
+  const rawDt = Math.min(0.4, (now - lastT) / 1000);
   lastT = now;
-  const dt = Math.min(0.033, rawDt); // physics-ի համար
+  const dt = Math.min(0.028, rawDt);
 
   if(S.phase === 'countdown'){
-    S.countdown -= rawDt; // ← ԻՐԱԿԱՆ ԺԱՄԱՆԱԿՈՎ
-    const curN = Math.ceil(S.countdown);
-    if(curN !== S._lastC){
-      S._lastC = curN;
-      if(curN === 2){ showMsg('2','gold'); Aud.beep(false); }
-      else if(curN === 1){ showMsg('1','gold'); Aud.beep(false); }
-      else if(curN <= 0){ showMsg('ԳՆԱ՛','green'); Aud.beep(true); }
+    S.countdown -= rawDt;
+    const c = Math.ceil(S.countdown);
+    if(c !== S._lc){
+      S._lc = c;
+      if(c === 2){ showMsg('2','gold'); Aud.beep(false); }
+      else if(c === 1){ showMsg('1','gold'); Aud.beep(false); }
+      else if(c <= 0){ showMsg('ԳՆԱ՛','green'); Aud.beep(true); }
     }
     if(S.countdown <= 0){
       S.phase = 'play';
       S.time = 0;
-      S._lastC = undefined;
+      S._lc = undefined;
     }
     updateTraffic(dt * 0.4);
   } else if(S.phase === 'play'){
     S.time += rawDt;
     updatePhysics(dt);
     updateTraffic(dt);
+    checkTrafficWake(dt);
 
     const lvl = LEVELS[S.level-1];
     spawnT -= dt;
@@ -1282,6 +1804,7 @@ function loop(now){
 
   updateRoad(S.z);
   updateScenery(S.z);
+  updateSkid(dt);
   updateCamera(dt);
   updateHUD();
   updateObjective();
@@ -1289,12 +1812,12 @@ function loop(now){
   mapT += rawDt;
   if(mapT > 0.05){ mapT = 0; drawMap(); }
 
-  Aud.setEngine(S.speed, S.phase === 'play' || S.phase === 'countdown');
+  Aud.setEngine(S.speed, IN.gas, S.phase === 'play' || S.phase === 'countdown');
 
   renderer.render(scene, camera);
 }
 
-/* ═══════════ INIT ═══════════ */
+/* ══════════ INIT ══════════ */
 buildMenu();
 resize();
 updateRoad(0);
@@ -1309,4 +1832,4 @@ requestAnimationFrame(loop);
 })();
 </script>
 </body>
-</html>
+  </html>
